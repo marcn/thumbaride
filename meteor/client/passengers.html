@@ -1,0 +1,20 @@
+
+<template name="passenger_test">
+    <h2>List of Passengers</h2>
+    <table border="1" cellpadding="5">
+        <tr>
+            <th>Pic</th>
+            <th>Name</th>
+            <th>Lat</th>
+            <th>Long</th>
+        </tr>
+    {{#each passengers}}
+        <tr>
+            <td><img src="http://graph.facebook.com/v2.5/{{ fb_id }}/picture" width="50"></td>
+            <td>{{ name }}</td>
+            <td>{{ lat }}</td>
+            <td>{{ long }}</td>
+        </tr>
+    {{/each}}
+    </table>
+</template>
