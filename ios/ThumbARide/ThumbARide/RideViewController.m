@@ -51,6 +51,7 @@
     MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
     annotation.title = @"Me";
     [self.mapView addAnnotation:annotation];
+    self.mapView.delegate = self;
     
     self.pickup = [UITextField new];
     self.destination = [UITextField new];
@@ -193,15 +194,15 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
-    
-    MKPinAnnotationView *v = [MKPinAnnotationView alloc];
-    v.draggable = YES;
-    v.canShowCallout = YES;
-    v.animatesDrop = YES;
-
-    return v;
-}
+//- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
+//    
+//    MKPinAnnotationView *v = [MKPinAnnotationView alloc];
+//    v.draggable = YES;
+//    v.canShowCallout = YES;
+//    v.animatesDrop = YES;
+//
+//    return v;
+//}
 
 - (void)mapView:(MKMapView *)mapView
  annotationView:(MKAnnotationView *)view
