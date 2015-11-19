@@ -6,5 +6,6 @@ use_frameworks!
 target 'ThumbARide' do
   pod 'FBSDKLoginKit'
   pod 'FBSDKCoreKit'
+  pod 'ObjectiveDDP'
 end
 

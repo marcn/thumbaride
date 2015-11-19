@@ -87,9 +87,15 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods-ThumbARide/Bolts.framework"
   install_framework "Pods-ThumbARide/FBSDKCoreKit.framework"
   install_framework "Pods-ThumbARide/FBSDKLoginKit.framework"
+  install_framework "Pods-ThumbARide/M13OrderedDictionary.framework"
+  install_framework "Pods-ThumbARide/ObjectiveDDP.framework"
+  install_framework "Pods-ThumbARide/SocketRocket.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods-ThumbARide/Bolts.framework"
   install_framework "Pods-ThumbARide/FBSDKCoreKit.framework"
   install_framework "Pods-ThumbARide/FBSDKLoginKit.framework"
+  install_framework "Pods-ThumbARide/M13OrderedDictionary.framework"
+  install_framework "Pods-ThumbARide/ObjectiveDDP.framework"
+  install_framework "Pods-ThumbARide/SocketRocket.framework"
 fi
