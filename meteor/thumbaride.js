@@ -114,8 +114,6 @@ if (Meteor.isServer) {
       "facebook" : {
         "accessToken" : new_user[""],
         "email" : new_user["email"],
-        "first_name" : new_user["first_name"],
-        "last_name" : new_user["last_name"],
         "id" : new_user["id"],
         "name" : new_user["name"],
       }
