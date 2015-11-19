@@ -1,27 +1,26 @@
 <head>
-  <title>Thumb-a-ride Dashboard</title>
+    <title>Thumb-a-ride Dashboard</title>
 </head>
 
 <body>
 
-  {{> map}}
+{{> map}}
 
-  <h1>Thumb-a-Ride</h1>
+<h1>Thumb-a-Ride</h1>
 
 {{> loginButtons}}
 
 <br><br>
 
-  {{> hello}}
+  {{> profile_pic_test}}
 
 </body>
 
-<template name="hello">
-	<img src="{{ profile_pic }}" width="50">
+<template name="profile_pic_test">
+    {{#if currentUser}}
+        <img src="http://graph.facebook.com/v2.2/{{ currentUser.services.facebook.id }}/picture" width="50">
+    {{else}}
+        <img src="/no_profile.png" width="50">
+    {{/if}}
 </template>
 
-<template name="map">
-  <div class="map-container">
-    {{> googleMap name="map" options=mapOptions}}
-  </div>
-</template>

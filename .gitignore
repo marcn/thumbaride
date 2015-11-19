@@ -1,6 +1,7 @@
 .meteor/local
 .meteor/meteorite
 meteor/server/config.js
+meteor/server/settings.json
 meteor/.idea/workspace.xml
 meteor/.idea/tasks.xml
 *.iml
