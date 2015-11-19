@@ -7,13 +7,15 @@
             <th>Name</th>
             <th>Lat</th>
             <th>Long</th>
+            <th>Change State</th>
         </tr>
     {{#each passengers}}
         <tr>
             <td><img src="http://graph.facebook.com/v2.5/{{ fb_id }}/picture" width="50"></td>
             <td>{{ name }}</td>
-            <td>{{ lat }}</td>
-            <td>{{ long }}</td>
+            <td>{{ from_location }}</td>
+            <td>{{ to_location }}</td>
+            <td><a href="/" class="make_driver">Make Driver</a></td>
         </tr>
     {{/each}}
     </table>
