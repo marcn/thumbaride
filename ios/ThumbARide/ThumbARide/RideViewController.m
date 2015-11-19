@@ -95,44 +95,44 @@ static NSString * const kGoogleMapsAPIKey = @"AIzaSyBGiI5rT3mXPgdgYy29IEfAg01lPx
                                                           attribute:NSLayoutAttributeCenterX
                                                          multiplier:1
                                                            constant:0]];
-     
-     [self.view addSubview:self.mapView];
-     [self.view sendSubviewToBack:self.mapView];
-     
-     }
-     
-     - (void)loginButtonDidLogOut:(FBSDKLoginButton *)loginButton {
-         [self presentViewController:[LoginViewController new] animated:YES completion:nil];
-     }
-     
-     
-     - (void)loginButton:(FBSDKLoginButton *)loginButton didCompleteWithResult:(FBSDKLoginManagerLoginResult *)result error:(NSError *)error {
-         
-     }
-     
-     
-     - (void)fetchNearby {
-         //    [self.viewModel fetchDataWithParams:@{
-         //                                          @"mode" : self.mode,
-         //                                          @"zoomlevel" : @(self.mapView.zoomLevel)}
-         //     ];
-     }
-     
+    
+    [self.view addSubview:self.mapView];
+    [self.view sendSubviewToBack:self.mapView];
+    
+}
+
+- (void)loginButtonDidLogOut:(FBSDKLoginButton *)loginButton {
+    [self presentViewController:[LoginViewController new] animated:YES completion:nil];
+}
+
+
+- (void)loginButton:(FBSDKLoginButton *)loginButton didCompleteWithResult:(FBSDKLoginManagerLoginResult *)result error:(NSError *)error {
+    
+}
+
+
+- (void)fetchNearby {
+    //    [self.viewModel fetchDataWithParams:@{
+    //                                          @"mode" : self.mode,
+    //                                          @"zoomlevel" : @(self.mapView.zoomLevel)}
+    //     ];
+}
+
 # pragma mark - ride view model
-     
-     - (void)rideViewModel:(RideViewModel *)model didFinishLoading:(NSDictionary *)data {
-         
-         // data will contain a list of lag/long and drivers/passengers metadata
-         
-         // populate car or thumb icons based on the result data
-     }
-     
-     
-     - (void)didReceiveMemoryWarning {
-         [super didReceiveMemoryWarning];
-         // Dispose of any resources that can be recreated.
-     }
-     
-     
-     
-     @end
+
+- (void)rideViewModel:(RideViewModel *)model didFinishLoading:(NSDictionary *)data {
+    
+    // data will contain a list of lag/long and drivers/passengers metadata
+    
+    // populate car or thumb icons based on the result data
+}
+
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+
+
+@end
