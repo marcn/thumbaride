@@ -34,7 +34,7 @@
 }
 
 - (void)loginButton:(FBSDKLoginButton *)loginButton didCompleteWithResult:(FBSDKLoginManagerLoginResult *)result error:(NSError *)error {
-    if (!error && !result.token) {
+    if (error == nil && result.token != nil) {
         [self loadMapView];
     }
 }
