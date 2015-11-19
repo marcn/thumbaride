@@ -16,9 +16,10 @@
 
 - (BOOL)application:(UIApplication *)application
 didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    
+    [[FBSDKApplicationDelegate sharedInstance] application:application
+                             didFinishLaunchingWithOptions:launchOptions];
     self.window.rootViewController = [LoginViewController new];
-
+    
     return YES;
 }
 
