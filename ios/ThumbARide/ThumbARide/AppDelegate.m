@@ -17,7 +17,7 @@
 - (BOOL)application:(UIApplication *)application
 didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-    self.window.rootViewController = [LoginViewController new];
+    self.window.rootViewController = [MapViewController new];
     
     return YES;
 }

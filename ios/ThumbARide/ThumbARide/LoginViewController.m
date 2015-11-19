@@ -9,6 +9,7 @@
 #import "LoginViewController.h"
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
+#import "MapViewController.h"
 
 @interface LoginViewController ()
 
@@ -24,7 +25,14 @@
     FBSDKLoginButton *loginButton = [[FBSDKLoginButton alloc] init];
     loginButton.center = self.view.center;
     [self.view addSubview:loginButton];
+    [loginButton addTarget:self action:@selector(clickedLogin) forControlEvents:UIControlEventTouchUpInside];
 
+}
+
+- (void)clickedLogin {
+    
+    /// @todo: add auth code here and if successful show the map VC
+    [self presentViewController:[MapViewController new] animated:YES completion:nil];
 }
 
 - (void)didReceiveMemoryWarning {
