@@ -114,8 +114,6 @@ if (Meteor.isServer) {
       "facebook" : {
         "accessToken" : new_user[""],
         "email" : new_user["email"],
-        "first_name" : new_user["first_name"],
-        "last_name" : new_user["last_name"],
         "id" : new_user["id"],
         "name" : new_user["name"],
       }
@@ -123,7 +121,7 @@ if (Meteor.isServer) {
     }); 
     }
 
-    return {"method" : "login", "data" : {"userId" : user_id}};
+    return {"method" : "mobileLogin", "data" : {"userId" : user_id}};
   }
   });
 }
