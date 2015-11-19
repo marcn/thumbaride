@@ -4,6 +4,7 @@
 use_frameworks!
 
 target 'ThumbARide' do
+  pod 'GoogleMaps'
   pod 'FBSDKLoginKit'
   pod 'FBSDKCoreKit'
   pod 'ObjectiveDDP'
