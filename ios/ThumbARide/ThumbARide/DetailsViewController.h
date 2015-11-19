@@ -12,4 +12,11 @@
 
 @property (nonatomic, strong) NSDictionary *user;
 
+@property (nonatomic, weak) IBOutlet UIImageView *imageView;
+@property (nonatomic, weak) IBOutlet UILabel *nameLabel;
+@property (nonatomic, weak) IBOutlet UILabel *phoneNumberLabel;
+@property (nonatomic, weak) IBOutlet UILabel *currentLocationLabel;
+@property (nonatomic, weak) IBOutlet UILabel *destinationLabel;
+//@property (nonatomic, weak) IBOutlet *destinationMapView;
+
 @end
