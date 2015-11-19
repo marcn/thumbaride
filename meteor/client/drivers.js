@@ -1,6 +1,6 @@
 
 Template.driver_test.helpers({
 	drivers: function() {
-		return Drivers.find({}, {sort: {createdAt: -1}});
+		return Pandas.find({type : "driver"}, {sort: {createdAt: -1}});
 	}
 });
