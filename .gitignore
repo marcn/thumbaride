@@ -1,5 +1,9 @@
 .meteor/local
 .meteor/meteorite
+meteor/server/config.js
+meteor/.idea/workspace.xml
+meteor/.idea/tasks.xml
+*.iml
 
 # Xcode
 #
