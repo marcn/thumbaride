@@ -12,20 +12,29 @@
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 
-@implementation AppDelegate
+#define FORCE_SHOW_MAP 0
 
+@implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application
 didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [[FBSDKApplicationDelegate sharedInstance] application:application
                              didFinishLaunchingWithOptions:launchOptions];
+
+#if FORCE_SHOW_MAP
+    self.window.rootViewController = [RideViewController new];
+#else
     
     if ([FBSDKAccessToken currentAccessToken] != nil) {
         self.window.rootViewController = [RideViewController new];
     } else {
         self.window.rootViewController = [LoginViewController new];
     }
+#endif
     
+    [self.window makeKeyAndVisible];
+
+    // add google key
     return YES;
 }
 
