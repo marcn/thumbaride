@@ -80,7 +80,6 @@
 //     ];
 }
 
-
 # pragma mark - ride view model 
 
 - (void)rideViewModel:(RideViewModel *)model didFinishLoading:(NSDictionary *)data {
