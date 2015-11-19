@@ -11,9 +11,8 @@
 #import "RideViewController.h"
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
-@import GoogleMaps;
 
-static NSString * const kGoogleMapsAPIKey = @"AIzaSyBGiI5rT3mXPgdgYy29IEfAg01lPx089NI";
+#define FORCE_SHOW_MAP 0
 
 @implementation AppDelegate
 
@@ -21,14 +20,19 @@ static NSString * const kGoogleMapsAPIKey = @"AIzaSyBGiI5rT3mXPgdgYy29IEfAg01lPx
 didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [[FBSDKApplicationDelegate sharedInstance] application:application
                              didFinishLaunchingWithOptions:launchOptions];
+
+#if FORCE_SHOW_MAP
+    self.window.rootViewController = [RideViewController new];
+#else
     
     if ([FBSDKAccessToken currentAccessToken] != nil) {
         self.window.rootViewController = [RideViewController new];
     } else {
         self.window.rootViewController = [LoginViewController new];
     }
+#endif
     
-    [GMSServices provideAPIKey:kGoogleMapsAPIKey];
+    [self.window makeKeyAndVisible];
 
     // add google key
     return YES;
