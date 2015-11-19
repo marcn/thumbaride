@@ -10,13 +10,52 @@
 
 @interface DetailsViewController ()
 
+@property (nonatomic, strong) NSDictionary *user;
+
+@property (nonatomic, weak) IBOutlet UIImageView *imageView;
+@property (nonatomic, weak) IBOutlet UILabel *nameLabel;
+@property (nonatomic, weak) IBOutlet UILabel *phoneNumberLabel;
+@property (nonatomic, weak) IBOutlet UILabel *pickupLocationLabel;
+@property (nonatomic, weak) IBOutlet UILabel *destinationLabel;
+@property (nonatomic, weak) IBOutlet MKMapView *destinationMapView;
+
+- (IBAction)pickUp:(id)sender;
+
 @end
 
 @implementation DetailsViewController
 
+- (instancetype)initWithUser:(NSDictionary *)user {
+    self = [super init];
+    if (self) {
+        _user = user;
+    }
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    self.title = @"Jane Doe";
+    self.navigationController.navigationBar.translucent = NO;
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
+                                                                                           target:self
+                                                                                           action:@selector(cancel)];
+}
+
+- (void)cancel {
+    [self.navigationController dismissViewControllerAnimated:YES completion:^{
+        if ([self.delegate respondsToSelector:@selector(detailsViewControllerDidCancel:)]) {
+            [self.delegate detailsViewControllerDidCancel:self];
+        }
+    }];
+}
+
+- (IBAction)pickUp:(id)sender {
+    [self.navigationController dismissViewControllerAnimated:YES completion:^{
+        if ([self.delegate respondsToSelector:@selector(detailsViewControllerDidCancel:)]) {
+            [self.delegate detailsViewControllerDidCancel:self];
+        }
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
