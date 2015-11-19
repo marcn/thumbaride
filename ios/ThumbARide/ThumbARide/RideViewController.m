@@ -8,16 +8,20 @@
 
 #import "RideViewController.h"
 #import "RideViewModel.h"
+#import "LoginViewController.h"
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
+#import <FBSDKLoginKit/FBSDKLoginKit.h>
 
 @import CoreLocation;
 
-@interface RideViewController () <RideViewModelDelegate>
+@interface RideViewController () <RideViewModelDelegate, FBSDKLoginButtonDelegate>
 
 @property (nonatomic, strong) RideViewModel *viewModel;
 @property (nonatomic, strong) UIView *mapView;
 @property (nonatomic, strong) UITextField *pickup;
 @property (nonatomic, strong) UITextField *destination;
 @property (nonatomic, strong) UISwitch *mode;
+@property (nonatomic, strong) FBSDKLoginButton *logoutButton;
 
 @end
 
@@ -35,6 +39,7 @@
     self.pickup = [UITextField new];
     self.destination = [UITextField new];
     self.mode = [UISwitch new];
+    self.logoutButton = [[FBSDKLoginButton alloc] init];
 
     self.pickup.translatesAutoresizingMaskIntoConstraints = NO;
     self.destination.translatesAutoresizingMaskIntoConstraints = NO;
@@ -42,6 +47,8 @@
 
     self.pickup.placeholder = @"Pick up address";
     self.destination.placeholder = @"Destionation address";
+    self.logoutButton.delegate = self;
+    self.logoutButton.center = self.view.center;
     [self.view addSubview:self.pickup];
     [self.view addSubview:self.destination];
     [self.view addSubview:self.mode];
@@ -58,9 +65,12 @@
                                                                             views:NSDictionaryOfVariableBindings(subview)]];
     }
     
+    [self.view addSubview:self.logoutButton];
     
-    
-    
+}
+
+- (void)loginButtonDidLogOut:(FBSDKLoginButton *)loginButton {
+    [self presentViewController:[LoginViewController new] animated:YES completion:nil];
 }
 
 - (void)fetchNearby {
