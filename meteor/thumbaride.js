@@ -121,7 +121,7 @@ if (Meteor.isServer) {
     }); 
     }
 
-    return {"method" : "login", "data" : {"userId" : user_id}};
+    return {"method" : "mobileLogin", "data" : {"userId" : user_id}};
   }
   });
 }
