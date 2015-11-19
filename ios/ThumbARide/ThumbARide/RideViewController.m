@@ -73,6 +73,12 @@
     [self presentViewController:[LoginViewController new] animated:YES completion:nil];
 }
 
+
+- (void)loginButton:(FBSDKLoginButton *)loginButton didCompleteWithResult:(FBSDKLoginManagerLoginResult *)result error:(NSError *)error {
+    
+}
+
+
 - (void)fetchNearby {
 //    [self.viewModel fetchDataWithParams:@{
 //                                          @"mode" : self.mode,
