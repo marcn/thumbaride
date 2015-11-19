@@ -23,8 +23,6 @@
         _locationManager = [CLLocationManager new];
         _locationManager.distanceFilter = kCLDistanceFilterNone;
         _locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-        // this will prompt user to allow location
-        [_locationManager startUpdatingLocation];
         _locationManager.delegate = self;
     }
 
@@ -54,12 +52,21 @@
     [self.locationManager startUpdatingLocation];
 }
 
+- (CLLocationCoordinate2D)locationCoord {
+    return self.locationManager.location.coordinate;
+}
+
 - (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
-    
+
+    if (status == kCLAuthorizationStatusAuthorizedWhenInUse ||
+        status == kCLAuthorizationStatusAuthorizedAlways) {
+        [self.locationManager startUpdatingLocation];
+    }
 }
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations {
-    
+    CLLocation *loc = locations.firstObject;
+    [self.delegate rideViewModel:self didUpdateLocation:loc.coordinate];
 }
 
 

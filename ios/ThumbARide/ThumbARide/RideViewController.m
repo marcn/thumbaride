@@ -6,21 +6,23 @@
 //  Copyright © 2015 Pandora. All rights reserved.
 //
 
+@import MapKit;
+
 #import "RideViewController.h"
 #import "RideViewModel.h"
 #import "LoginViewController.h"
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
+#import "MKMapView+ZoomLevel.h"
 
-@import GoogleMaps;
-@import MapKit;
+//static NSString * const kGoogleMapsAPIKey = @"AIzaSyBGiI5rT3mXPgdgYy29IEfAg01lPx089NI";
 
-static NSString * const kGoogleMapsAPIKey = @"AIzaSyBGiI5rT3mXPgdgYy29IEfAg01lPx089NI";
-
-@interface RideViewController () <RideViewModelDelegate, FBSDKLoginButtonDelegate>
+@interface RideViewController () <RideViewModelDelegate, MKMapViewDelegate, FBSDKLoginButtonDelegate>
 
 @property (nonatomic, strong) RideViewModel *viewModel;
 @property (nonatomic, strong) MKMapView *mapView;
+@property (nonatomic, strong) MKPinAnnotationView *pin;
+//@property (nonatomic, strong) GMSMapView *gmapView;
 @property (nonatomic, strong) UITextField *pickup;
 @property (nonatomic, strong) UITextField *destination;
 @property (nonatomic, strong) UISwitch *mode;
@@ -34,8 +36,7 @@ static NSString * const kGoogleMapsAPIKey = @"AIzaSyBGiI5rT3mXPgdgYy29IEfAg01lPx
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    
-    [GMSServices provideAPIKey:kGoogleMapsAPIKey];
+//    [GMSServices provideAPIKey:kGoogleMapsAPIKey];
     
     self.viewModel = [RideViewModel new];
     self.viewModel.delegate = self;
@@ -44,8 +45,12 @@ static NSString * const kGoogleMapsAPIKey = @"AIzaSyBGiI5rT3mXPgdgYy29IEfAg01lPx
     
     self.mapView = [[MKMapView alloc] initWithFrame:self.view.bounds];
     self.mapView.mapType = MKMapTypeStandard;
+    self.mapView.showsPointsOfInterest = YES;
+    self.mapView.showsCompass = NO;
     self.mapView.showsUserLocation = YES;
-    self.mapView.userLocation.title = @"Me";
+    MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
+    annotation.title = @"Me";
+    [self.mapView addAnnotation:annotation];
     
     self.pickup = [UITextField new];
     self.destination = [UITextField new];
@@ -118,7 +123,6 @@ static NSString * const kGoogleMapsAPIKey = @"AIzaSyBGiI5rT3mXPgdgYy29IEfAg01lPx
     [self.view addGestureRecognizer:tap];
     [self.view addGestureRecognizer:swipe];
     [self.view addGestureRecognizer:pinch];
-    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -127,8 +131,6 @@ static NSString * const kGoogleMapsAPIKey = @"AIzaSyBGiI5rT3mXPgdgYy29IEfAg01lPx
     } else {
         [self.viewModel refreshLocation];
     }
-    
-    
 }
 
 - (void)tap:(UIGestureRecognizer *)g {
@@ -171,6 +173,13 @@ static NSString * const kGoogleMapsAPIKey = @"AIzaSyBGiI5rT3mXPgdgYy29IEfAg01lPx
 
 # pragma mark - ride view model
 
+- (void)rideViewModel:(RideViewModel *)model didUpdateLocation:(CLLocationCoordinate2D)coord {
+ 
+    MKPointAnnotation *annotation = self.mapView.annotations.firstObject;
+    [annotation setCoordinate:coord];
+    [self.mapView setCenterCoordinate:coord zoomLevel:15 animated:YES];
+}
+
 - (void)rideViewModel:(RideViewModel *)model didFinishLoading:(NSDictionary *)data {
     
     // data will contain a list of lag/long and drivers/passengers metadata
@@ -184,6 +193,24 @@ static NSString * const kGoogleMapsAPIKey = @"AIzaSyBGiI5rT3mXPgdgYy29IEfAg01lPx
     // Dispose of any resources that can be recreated.
 }
 
+- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
+    
+    MKPinAnnotationView *v = [MKPinAnnotationView alloc];
+    v.draggable = YES;
+    v.canShowCallout = YES;
+    v.animatesDrop = YES;
+
+    return v;
+}
+
+- (void)mapView:(MKMapView *)mapView
+ annotationView:(MKAnnotationView *)view
+didChangeDragState:(MKAnnotationViewDragState)newState
+   fromOldState:(MKAnnotationViewDragState)oldState  {
+ 
+    
+    
+}
 
 
 @end

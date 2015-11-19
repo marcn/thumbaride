@@ -14,6 +14,7 @@
 @protocol RideViewModelDelegate <NSObject>
 
 - (void)rideViewModel:(RideViewModel *)model didFinishLoading:(NSDictionary *)data;
+- (void)rideViewModel:(RideViewModel *)model didUpdateLocation:(CLLocationCoordinate2D)coord;
 
 @end
 
@@ -21,6 +22,8 @@
 @interface RideViewModel : NSObject <CLLocationManagerDelegate>
 
 @property (nonatomic) id<RideViewModelDelegate> delegate;
+@property (nonatomic) CLLocationCoordinate2D locationCoord;
+
 - (void)fetchDataWithParams:(NSDictionary *)params;
 - (void)requestLocationAuthorization;
 - (void)refreshLocation;
