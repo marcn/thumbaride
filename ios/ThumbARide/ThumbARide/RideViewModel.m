@@ -46,6 +46,14 @@
 }
 
 
+- (void)requestLocationAuthorization {
+    [self.locationManager requestWhenInUseAuthorization];
+}
+
+- (void)refreshLocation {
+    [self.locationManager startUpdatingLocation];
+}
+
 - (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
     
 }

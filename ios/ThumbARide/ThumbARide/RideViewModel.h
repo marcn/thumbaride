@@ -18,10 +18,12 @@
 @end
 
 
-@interface RideViewModel : NSObject <CLLocationManagerDelegate, RideViewModelDelegate>
+@interface RideViewModel : NSObject <CLLocationManagerDelegate>
 
 @property (nonatomic) id<RideViewModelDelegate> delegate;
 - (void)fetchDataWithParams:(NSDictionary *)params;
+- (void)requestLocationAuthorization;
+- (void)refreshLocation;
 
 @end
 
