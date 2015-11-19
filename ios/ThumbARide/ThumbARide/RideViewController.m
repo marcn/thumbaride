@@ -13,13 +13,14 @@
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 
 @import GoogleMaps;
+@import MapKit;
 
 static NSString * const kGoogleMapsAPIKey = @"AIzaSyBGiI5rT3mXPgdgYy29IEfAg01lPx089NI";
 
 @interface RideViewController () <RideViewModelDelegate, FBSDKLoginButtonDelegate>
 
 @property (nonatomic, strong) RideViewModel *viewModel;
-@property (nonatomic, strong) GMSMapView *mapView;
+@property (nonatomic, strong) MKMapView *mapView;
 @property (nonatomic, strong) UITextField *pickup;
 @property (nonatomic, strong) UITextField *destination;
 @property (nonatomic, strong) UISwitch *mode;
@@ -39,51 +40,51 @@ static NSString * const kGoogleMapsAPIKey = @"AIzaSyBGiI5rT3mXPgdgYy29IEfAg01lPx
     self.viewModel = [RideViewModel new];
     self.viewModel.delegate = self;
     
-    
     self.view.backgroundColor = [UIColor lightTextColor];
     
-    // Position the camera at 0,0 and zoom level 1.
-    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:0.0
-                                                            longitude:0.0
-                                                                 zoom:10];
-    
-    GMSMarker *marker = [GMSMarker new];
-    marker.snippet = @"Me";
-    
-    self.mapView = [GMSMapView mapWithFrame:self.view.bounds camera:camera];
-    self.mapView.selectedMarker = marker;
+    self.mapView = [[MKMapView alloc] initWithFrame:self.view.bounds];
+    self.mapView.mapType = MKMapTypeStandard;
+    self.mapView.showsUserLocation = YES;
+    self.mapView.userLocation.title = @"Me";
     
     self.pickup = [UITextField new];
     self.destination = [UITextField new];
+    self.pickup.borderStyle = UITextBorderStyleRoundedRect;
+    self.destination.borderStyle = UITextBorderStyleRoundedRect;
     self.mode = [UISwitch new];
     self.logoutButton = [[FBSDKLoginButton alloc] init];
     
     self.pickup.translatesAutoresizingMaskIntoConstraints = NO;
     self.destination.translatesAutoresizingMaskIntoConstraints = NO;
     self.mode.translatesAutoresizingMaskIntoConstraints = NO;
-    self.logoutButton.translatesAutoresizingMaskIntoConstraints = NO;
     
-    self.pickup.placeholder = @"Pick up address";
-    self.destination.placeholder = @"Destionation address";
+    self.pickup.placeholder = @"From";
+    self.destination.placeholder = @"To";
     self.logoutButton.delegate = self;
+    
+    self.pickup.backgroundColor = [UIColor lightGrayColor];
+    self.destination.backgroundColor = [UIColor lightGrayColor];
+    
     
     [self.view addSubview:self.pickup];
     [self.view addSubview:self.destination];
     [self.view addSubview:self.mode];
-    [self.view addSubview:self.logoutButton];
     
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[_pickup]-[_destination]-[_mode]-|"
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[_pickup(width)]-[_destination(width)]-[_mode]-|"
                                                                       options:0
-                                                                      metrics:nil
-                                                                        views:NSDictionaryOfVariableBindings(_pickup, _destination, _mode, _logoutButton)]];
+                                                                      metrics:@{ @"width" : @(CGRectGetWidth(self.view.bounds) / 2.0 - 50) }
+                                                                        views:NSDictionaryOfVariableBindings(_pickup, _destination, _mode)]];
     
     for (UIView *subview in self.view.subviews) {
-        [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[subview(50)]-(50)-|"
+        [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-(30)-[subview(40)]"
                                                                           options:0
                                                                           metrics:nil
                                                                             views:NSDictionaryOfVariableBindings(subview)]];
     }
     
+    
+    self.logoutButton.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.view addSubview:self.logoutButton];
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_logoutButton(40)]-(10)-|"
                                                                       options:0
                                                                       metrics:nil
@@ -96,8 +97,58 @@ static NSString * const kGoogleMapsAPIKey = @"AIzaSyBGiI5rT3mXPgdgYy29IEfAg01lPx
                                                          multiplier:1
                                                            constant:0]];
     
+    self.mapView.translatesAutoresizingMaskIntoConstraints = NO;
     [self.view addSubview:self.mapView];
     [self.view sendSubviewToBack:self.mapView];
+    
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_mapView]|"
+                                                                      options:0
+                                                                      metrics:nil
+                                                                        views:NSDictionaryOfVariableBindings(_mapView)]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_mapView]|"
+                                                                      options:0
+                                                                      metrics:nil
+                                                                        views:NSDictionaryOfVariableBindings(_mapView)]];
+    
+    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tap:)];
+    UISwipeGestureRecognizer *swipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipe:)];
+    UIPinchGestureRecognizer *pinch = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(pinch:)];
+    
+    [self.view addGestureRecognizer:tap];
+    [self.view addGestureRecognizer:swipe];
+    [self.view addGestureRecognizer:pinch];
+    
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusNotDetermined) {
+        [self.viewModel requestLocationAuthorization];
+    } else {
+        [self.viewModel refreshLocation];
+    }
+    
+    
+}
+
+- (void)tap:(UIGestureRecognizer *)g {
+    
+    if (self.pickup.isFirstResponder) {
+        [self.pickup resignFirstResponder];
+    }
+    
+    if (self.destination.isFirstResponder) {
+        [self.destination resignFirstResponder];
+    }
+    
+}
+
+
+- (void)swipe:(UIGestureRecognizer *)g {
+    
+}
+
+- (void)pinch:(UIGestureRecognizer *)g {
     
 }
 
