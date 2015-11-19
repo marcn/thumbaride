@@ -1,6 +1,6 @@
 var infowindow;
 
-function getInfoWindow(document, type){
+function getInfoWindow(document){
 	var infoWindow = '<div id="content">' +
 	'<div id="siteNotice">' +
 	'</div>' +
@@ -17,23 +17,46 @@ function getInfoWindow(document, type){
 
 }
 
-function addMarker(document, map, type){
+function getIcon(status){
+	var icon = "/img/"
+	if (status == "needride"){
+		icon = icon + "icon-thumb-noride.png"
+	}else if (status == "foundride"){
+		icon = icon + "icon-thumb-ride.png"
+	}else if ((status == "seekingriders") ||  (status == "foundriders")){
+		icon = icon + "icon-car-small.png"
+	} 
 
-	var marker = new google.maps.Marker({
+	return icon;
+}
+
+function addMarkers(document, map){
+
+
+
+	var from = new google.maps.Marker({
 					animation: google.maps.Animation.DROP,
-					position: new google.maps.LatLng(parseFloat(document.lat), parseFloat(document.long)),
+					position: new google.maps.LatLng(document.from_location[0], document.from_location[1]),
 					map: map.instance,
 					id: document._id,
 					title: document.name, 
-					type: type, 
-					customInfo: document
-					//icon:iconBase +  (type === "driver") ? 'driver.png' : 'passenger.png'
+					customInfo: document,
+					icon: getIcon(document.status)
+				});
+	var to = new google.maps.Marker({
+					animation: google.maps.Animation.DROP,
+					position: new google.maps.LatLng(document.to_location[0], document.to_location[1]),
+					map: map.instance,
+					id: document._id,
+					title: document.name, 
+					customInfo: document,
+					icon: getIcon(document.status)
 				});
 
 	
 
 	
-	marker.addListener('click', function (e) {
+	from.addListener('click', function (e) {
 
 		if (infowindow) {
 	        infowindow.close();
@@ -41,14 +64,29 @@ function addMarker(document, map, type){
     
 		infowindow = new google.maps.InfoWindow({
 					//content: $("#infoWindowTmpl").tmpl(document), 
-					content: getInfoWindow(this.customInfo, this.type), 
+					content: getInfoWindow(this.customInfo), 
 					maxWidth: 200
 				});
 
-		infowindow.open(map.instance, marker);
+		infowindow.open(map.instance, from);
 	});
 
-	return marker;
+	to.addListener('click', function (e) {
+
+		if (infowindow) {
+	        infowindow.close();
+	    }
+    
+		infowindow = new google.maps.InfoWindow({
+					//content: $("#infoWindowTmpl").tmpl(document), 
+					content: getInfoWindow(this.customInfo), 
+					maxWidth: 200
+				});
+
+		infowindow.open(map.instance, to);
+	});
+
+	return [from, to];
 }
 
 
@@ -58,7 +96,7 @@ Template.map.onCreated(function () {
 		var markers = {};
 		Drivers.find().observe({
 			added: function (document) {
-				markers[document._id] = addMarker(document, map, "driver");;
+				markers[document._id] = addMarkers(document, map);;
 			},
 			changed: function (newDocument, oldDocument) {
 				markers[newDocument._id].setPosition({lat: parseFloat(newDocument.lat), lng: parseFloat(newDocument.long)});
@@ -72,7 +110,7 @@ Template.map.onCreated(function () {
 
 		Passengers.find().observe({
 			added: function (document) {
-				markers[document._id] = addMarker(document, map, "driver");;
+				markers[document._id] = addMarkers(document, map, "driver");;
 			},
 			changed: function (newDocument, oldDocument) {
 				markers[newDocument._id].setPosition({lat: newDocument.lat, lng: newDocument.lng});
