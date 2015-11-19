@@ -9,7 +9,7 @@
 #import "LoginViewController.h"
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
-#import "MapViewController.h"
+#import "RideViewController.h"
 
 @interface LoginViewController ()
 
@@ -32,7 +32,7 @@
 - (void)clickedLogin {
     
     /// @todo: add auth code here and if successful show the map VC
-    [self presentViewController:[MapViewController new] animated:YES completion:nil];
+    [self presentViewController:[RideViewController new] animated:YES completion:nil];
 }
 
 - (void)didReceiveMemoryWarning {

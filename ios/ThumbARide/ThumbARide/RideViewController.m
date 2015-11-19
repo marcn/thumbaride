@@ -1,15 +1,19 @@
 //
-//  MapViewController.m
+//  RideViewController.m
 //  ThumbARide
 //
 //  Created by Ellie Shin on 11/18/15.
 //  Copyright © 2015 Pandora. All rights reserved.
 //
 
-#import "MapViewController.h"
+#import "RideViewController.h"
+#import "RideViewModel.h"
 
-@interface MapViewController ()
+@import CoreLocation;
 
+@interface RideViewController () <RideViewModelDelegate>
+
+@property (nonatomic, strong) RideViewModel *viewModel;
 @property (nonatomic, strong) UIView *mapView;
 @property (nonatomic, strong) UITextField *pickup;
 @property (nonatomic, strong) UITextField *destination;
@@ -22,6 +26,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    self.viewModel = [RideViewModel new];
+    self.viewModel.delegate = self;
     
     self.view.backgroundColor = [UIColor lightTextColor];
     
@@ -50,11 +57,35 @@
                                                                           metrics:nil
                                                                             views:NSDictionaryOfVariableBindings(subview)]];
     }
+    
+    
+    
+    
 }
+
+- (void)fetchNearby {
+//    [self.viewModel fetchDataWithParams:@{
+//                                          @"mode" : self.mode,
+//                                          @"zoomlevel" : @(self.mapView.zoomLevel)}
+//     ];
+}
+
+
+# pragma mark - ride view model 
+
+- (void)rideViewModel:(RideViewModel *)model didFinishLoading:(NSDictionary *)data {
+    
+    // data will contain a list of lag/long and drivers/passengers metadata
+    
+    // populate car or thumb icons based on the result data
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+
 
 @end

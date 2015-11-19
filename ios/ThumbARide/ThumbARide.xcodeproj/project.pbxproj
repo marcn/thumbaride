@@ -13,7 +13,8 @@
 		8E3F94F21BFD4EA00019036D /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E3F94F11BFD4EA00019036D /* LoginViewController.m */; };
 		8E3F94F51BFD4EC00019036D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E3F94F41BFD4EC00019036D /* AppDelegate.m */; };
 		8E3F94F81BFD4EDC0019036D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E3F94F71BFD4EDC0019036D /* main.m */; };
-		8E3F94FB1BFD51E90019036D /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E3F94FA1BFD51E90019036D /* MapViewController.m */; };
+		8E3F94FB1BFD51E90019036D /* RideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E3F94FA1BFD51E90019036D /* RideViewController.m */; };
+		8E3F94FE1BFD59280019036D /* RideViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E3F94FD1BFD59280019036D /* RideViewModel.m */; };
 		BE3F153C1BFD220B0072E5F2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE3F153A1BFD220B0072E5F2 /* Main.storyboard */; };
 		BE3F153E1BFD220B0072E5F2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BE3F153D1BFD220B0072E5F2 /* Assets.xcassets */; };
 		BE3F15411BFD220B0072E5F2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE3F153F1BFD220B0072E5F2 /* LaunchScreen.storyboard */; };
@@ -30,8 +31,10 @@
 		8E3F94F31BFD4EC00019036D /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		8E3F94F41BFD4EC00019036D /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		8E3F94F71BFD4EDC0019036D /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		8E3F94F91BFD51E90019036D /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
-		8E3F94FA1BFD51E90019036D /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
+		8E3F94F91BFD51E90019036D /* RideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RideViewController.h; sourceTree = "<group>"; };
+		8E3F94FA1BFD51E90019036D /* RideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RideViewController.m; sourceTree = "<group>"; };
+		8E3F94FC1BFD59280019036D /* RideViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RideViewModel.h; sourceTree = "<group>"; };
+		8E3F94FD1BFD59280019036D /* RideViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RideViewModel.m; sourceTree = "<group>"; };
 		BB00D24114A99503DB0A2908 /* Pods-ThumbARide.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ThumbARide.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ThumbARide/Pods-ThumbARide.debug.xcconfig"; sourceTree = "<group>"; };
 		BE3F15331BFD220B0072E5F2 /* ThumbARide.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ThumbARide.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE3F153B1BFD220B0072E5F2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -95,8 +98,10 @@
 				38187A251BFD562C009089C4 /* DetailsViewController.m */,
 				38187A261BFD562C009089C4 /* DetailsViewController.xib */,
 				8E3F94F71BFD4EDC0019036D /* main.m */,
-				8E3F94F91BFD51E90019036D /* MapViewController.h */,
-				8E3F94FA1BFD51E90019036D /* MapViewController.m */,
+				8E3F94F91BFD51E90019036D /* RideViewController.h */,
+				8E3F94FA1BFD51E90019036D /* RideViewController.m */,
+				8E3F94FC1BFD59280019036D /* RideViewModel.h */,
+				8E3F94FD1BFD59280019036D /* RideViewModel.m */,
 			);
 			path = ThumbARide;
 			sourceTree = "<group>";
@@ -236,8 +241,9 @@
 				8E3F94F51BFD4EC00019036D /* AppDelegate.m in Sources */,
 				38187A271BFD562C009089C4 /* DetailsViewController.m in Sources */,
 				8E3F94F81BFD4EDC0019036D /* main.m in Sources */,
+				8E3F94FE1BFD59280019036D /* RideViewModel.m in Sources */,
 				8E3F94F21BFD4EA00019036D /* LoginViewController.m in Sources */,
-				8E3F94FB1BFD51E90019036D /* MapViewController.m in Sources */,
+				8E3F94FB1BFD51E90019036D /* RideViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
