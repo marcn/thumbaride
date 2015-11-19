@@ -21,7 +21,7 @@
 
 @end
 
-@implementation MapViewController
+@implementation RideViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

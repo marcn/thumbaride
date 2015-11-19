@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "LoginViewController.h"
+#import "RideViewController.h"
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 
@@ -18,7 +19,12 @@
 didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [[FBSDKApplicationDelegate sharedInstance] application:application
                              didFinishLaunchingWithOptions:launchOptions];
-    self.window.rootViewController = [LoginViewController new];
+    
+    if ([FBSDKAccessToken currentAccessToken] != nil) {
+        self.window.rootViewController = [RideViewController new];
+    } else {
+        self.window.rootViewController = [LoginViewController new];
+    }
     
     return YES;
 }

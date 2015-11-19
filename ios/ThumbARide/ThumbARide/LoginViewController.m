@@ -11,28 +11,36 @@
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 #import "RideViewController.h"
 
-@interface LoginViewController ()
+@interface LoginViewController () <FBSDKLoginButtonDelegate>
 
 @end
 
 @implementation LoginViewController
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    self.view.backgroundColor = [UIColor lightGrayColor];
-
-    FBSDKLoginButton *loginButton = [[FBSDKLoginButton alloc] init];
-    loginButton.center = self.view.center;
-    [self.view addSubview:loginButton];
-    [loginButton addTarget:self action:@selector(clickedLogin) forControlEvents:UIControlEventTouchUpInside];
-
+- (void)loadMapView {
+    [self presentViewController:[RideViewController new] animated:YES completion:nil];
 }
 
-- (void)clickedLogin {
+- (void)viewDidLoad {
+    [super viewDidLoad];
     
-    /// @todo: add auth code here and if successful show the map VC
-    [self presentViewController:[RideViewController new] animated:YES completion:nil];
+    // Do any additional setup after loading the view.
+    self.view.backgroundColor = [UIColor lightGrayColor];
+    
+    FBSDKLoginButton *loginButton = [[FBSDKLoginButton alloc] init];
+    loginButton.delegate = self;
+    loginButton.center = self.view.center;
+    [self.view addSubview:loginButton];
+}
+
+- (void)loginButton:(FBSDKLoginButton *)loginButton didCompleteWithResult:(FBSDKLoginManagerLoginResult *)result error:(NSError *)error {
+    if (!error && !result.token) {
+        [self loadMapView];
+    }
+}
+
+- (void)loginButtonDidLogOut:(FBSDKLoginButton *)loginButton {
+    NSLog(@"Log out");
 }
 
 - (void)didReceiveMemoryWarning {
