@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		1ED81DEA5834CD3E67105F80 /* Pods_ThumbARide.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65D5A6D4070BBD948663D9E5 /* Pods_ThumbARide.framework */; };
+		38187A271BFD562C009089C4 /* DetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38187A251BFD562C009089C4 /* DetailsViewController.m */; };
+		38187A281BFD562C009089C4 /* DetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38187A261BFD562C009089C4 /* DetailsViewController.xib */; };
 		8E3F94F21BFD4EA00019036D /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E3F94F11BFD4EA00019036D /* LoginViewController.m */; };
 		8E3F94F51BFD4EC00019036D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E3F94F41BFD4EC00019036D /* AppDelegate.m */; };
 		8E3F94F81BFD4EDC0019036D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E3F94F71BFD4EDC0019036D /* main.m */; };
@@ -19,6 +21,9 @@
 
 /* Begin PBXFileReference section */
 		2C6ED4EFAA22094A5B95F82A /* Pods-ThumbARide.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ThumbARide.release.xcconfig"; path = "Pods/Target Support Files/Pods-ThumbARide/Pods-ThumbARide.release.xcconfig"; sourceTree = "<group>"; };
+		38187A241BFD562C009089C4 /* DetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailsViewController.h; sourceTree = "<group>"; };
+		38187A251BFD562C009089C4 /* DetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailsViewController.m; sourceTree = "<group>"; };
+		38187A261BFD562C009089C4 /* DetailsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailsViewController.xib; sourceTree = "<group>"; };
 		65D5A6D4070BBD948663D9E5 /* Pods_ThumbARide.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ThumbARide.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E3F94F01BFD4EA00019036D /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		8E3F94F11BFD4EA00019036D /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
@@ -86,6 +91,9 @@
 				8E3F94F11BFD4EA00019036D /* LoginViewController.m */,
 				8E3F94F31BFD4EC00019036D /* AppDelegate.h */,
 				8E3F94F41BFD4EC00019036D /* AppDelegate.m */,
+				38187A241BFD562C009089C4 /* DetailsViewController.h */,
+				38187A251BFD562C009089C4 /* DetailsViewController.m */,
+				38187A261BFD562C009089C4 /* DetailsViewController.xib */,
 				8E3F94F71BFD4EDC0019036D /* main.m */,
 				8E3F94F91BFD51E90019036D /* MapViewController.h */,
 				8E3F94FA1BFD51E90019036D /* MapViewController.m */,
@@ -166,6 +174,7 @@
 				BE3F15411BFD220B0072E5F2 /* LaunchScreen.storyboard in Resources */,
 				BE3F153E1BFD220B0072E5F2 /* Assets.xcassets in Resources */,
 				BE3F153C1BFD220B0072E5F2 /* Main.storyboard in Resources */,
+				38187A281BFD562C009089C4 /* DetailsViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -225,6 +234,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8E3F94F51BFD4EC00019036D /* AppDelegate.m in Sources */,
+				38187A271BFD562C009089C4 /* DetailsViewController.m in Sources */,
 				8E3F94F81BFD4EDC0019036D /* main.m in Sources */,
 				8E3F94F21BFD4EA00019036D /* LoginViewController.m in Sources */,
 				8E3F94FB1BFD51E90019036D /* MapViewController.m in Sources */,
