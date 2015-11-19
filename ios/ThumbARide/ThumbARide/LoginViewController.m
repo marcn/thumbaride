@@ -6,15 +6,15 @@
 //  Copyright © 2015 Pandora. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "LoginViewController.h"
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 
-@interface ViewController ()
+@interface LoginViewController ()
 
 @end
 
-@implementation ViewController
+@implementation LoginViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

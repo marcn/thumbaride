@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import "ViewController.h"
+#import "LoginViewController.h"
 
 @implementation AppDelegate
 
@@ -15,7 +15,7 @@
 - (BOOL)application:(UIApplication *)application
 didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-    self.window.rootViewController = [ViewController new];
+    self.window.rootViewController = [LoginViewController new];
     
     return YES;
 }

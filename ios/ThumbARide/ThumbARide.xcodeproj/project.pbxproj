@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1ED81DEA5834CD3E67105F80 /* Pods_ThumbARide.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65D5A6D4070BBD948663D9E5 /* Pods_ThumbARide.framework */; };
-		8E3F94F21BFD4EA00019036D /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E3F94F11BFD4EA00019036D /* ViewController.m */; };
+		8E3F94F21BFD4EA00019036D /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E3F94F11BFD4EA00019036D /* LoginViewController.m */; };
 		8E3F94F51BFD4EC00019036D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E3F94F41BFD4EC00019036D /* AppDelegate.m */; };
 		8E3F94F81BFD4EDC0019036D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E3F94F71BFD4EDC0019036D /* main.m */; };
 		BE3F153C1BFD220B0072E5F2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE3F153A1BFD220B0072E5F2 /* Main.storyboard */; };
@@ -19,8 +19,8 @@
 /* Begin PBXFileReference section */
 		2C6ED4EFAA22094A5B95F82A /* Pods-ThumbARide.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ThumbARide.release.xcconfig"; path = "Pods/Target Support Files/Pods-ThumbARide/Pods-ThumbARide.release.xcconfig"; sourceTree = "<group>"; };
 		65D5A6D4070BBD948663D9E5 /* Pods_ThumbARide.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ThumbARide.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		8E3F94F01BFD4EA00019036D /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		8E3F94F11BFD4EA00019036D /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		8E3F94F01BFD4EA00019036D /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		8E3F94F11BFD4EA00019036D /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		8E3F94F31BFD4EC00019036D /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		8E3F94F41BFD4EC00019036D /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		8E3F94F71BFD4EDC0019036D /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -79,8 +79,8 @@
 				BE3F153F1BFD220B0072E5F2 /* LaunchScreen.storyboard */,
 				BE3F15421BFD220B0072E5F2 /* Info.plist */,
 				BE3F15541BFD4AA20072E5F2 /* ThumbARide-Bridging-Header.h */,
-				8E3F94F01BFD4EA00019036D /* ViewController.h */,
-				8E3F94F11BFD4EA00019036D /* ViewController.m */,
+				8E3F94F01BFD4EA00019036D /* LoginViewController.h */,
+				8E3F94F11BFD4EA00019036D /* LoginViewController.m */,
 				8E3F94F31BFD4EC00019036D /* AppDelegate.h */,
 				8E3F94F41BFD4EC00019036D /* AppDelegate.m */,
 				8E3F94F71BFD4EDC0019036D /* main.m */,
@@ -221,7 +221,7 @@
 			files = (
 				8E3F94F51BFD4EC00019036D /* AppDelegate.m in Sources */,
 				8E3F94F81BFD4EDC0019036D /* main.m in Sources */,
-				8E3F94F21BFD4EA00019036D /* ViewController.m in Sources */,
+				8E3F94F21BFD4EA00019036D /* LoginViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
