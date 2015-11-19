@@ -26,6 +26,7 @@
 		BE3F153D1BFD220B0072E5F2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BE3F15401BFD220B0072E5F2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BE3F15421BFD220B0072E5F2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BE3F15541BFD4AA20072E5F2 /* ThumbARide-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ThumbARide-Bridging-Header.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +76,7 @@
 				BE3F153D1BFD220B0072E5F2 /* Assets.xcassets */,
 				BE3F153F1BFD220B0072E5F2 /* LaunchScreen.storyboard */,
 				BE3F15421BFD220B0072E5F2 /* Info.plist */,
+				BE3F15541BFD4AA20072E5F2 /* ThumbARide-Bridging-Header.h */,
 			);
 			path = ThumbARide;
 			sourceTree = "<group>";
@@ -323,10 +325,13 @@
 			baseConfigurationReference = BB00D24114A99503DB0A2908 /* Pods-ThumbARide.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = ThumbARide/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.pandora.ThumbARide;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "ThumbARide/ThumbARide-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -335,10 +340,12 @@
 			baseConfigurationReference = 2C6ED4EFAA22094A5B95F82A /* Pods-ThumbARide.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = ThumbARide/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.pandora.ThumbARide;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "ThumbARide/ThumbARide-Bridging-Header.h";
 			};
 			name = Release;
 		};
