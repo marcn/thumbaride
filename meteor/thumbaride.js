@@ -5,6 +5,13 @@ if (Meteor.isClient) {
   Template.hello.helpers({
 	counter: function () {
 	  return Session.get('counter');
+	},
+	profile_pic: function() {
+		if (Meteor.user() != null) {
+			return "http://graph.facebook.com/v2.2/" + Meteor.user().services.facebook.id + "/picture";
+		} else {
+			return "http://www.pandora.com/img/no_photo_180.png";
+		}
 	}
   });
 

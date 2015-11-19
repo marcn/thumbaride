@@ -5,15 +5,17 @@
 <body>
   <h1>Thumb-a-Ride</h1>
 
-Auth: {{> loginButtons}}
+{{> loginButtons}}
 
 <br><br>
 
-
   {{> hello}}
+
 </body>
 
 <template name="hello">
+	<img src="{{ profile_pic }}" width="50">
+<br><br>
   <button>Click Me</button>
   <p>You've pressed the button {{counter}} times.</p>
 </template>
