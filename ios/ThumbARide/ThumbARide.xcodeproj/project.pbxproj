@@ -8,8 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		1ED81DEA5834CD3E67105F80 /* Pods_ThumbARide.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65D5A6D4070BBD948663D9E5 /* Pods_ThumbARide.framework */; };
-		BE3F15371BFD220B0072E5F2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3F15361BFD220B0072E5F2 /* AppDelegate.swift */; };
-		BE3F15391BFD220B0072E5F2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3F15381BFD220B0072E5F2 /* ViewController.swift */; };
+		8E3F94F21BFD4EA00019036D /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E3F94F11BFD4EA00019036D /* LoginViewController.m */; };
+		8E3F94F51BFD4EC00019036D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E3F94F41BFD4EC00019036D /* AppDelegate.m */; };
+		8E3F94F81BFD4EDC0019036D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E3F94F71BFD4EDC0019036D /* main.m */; };
 		BE3F153C1BFD220B0072E5F2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE3F153A1BFD220B0072E5F2 /* Main.storyboard */; };
 		BE3F153E1BFD220B0072E5F2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BE3F153D1BFD220B0072E5F2 /* Assets.xcassets */; };
 		BE3F15411BFD220B0072E5F2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE3F153F1BFD220B0072E5F2 /* LaunchScreen.storyboard */; };
@@ -18,10 +19,13 @@
 /* Begin PBXFileReference section */
 		2C6ED4EFAA22094A5B95F82A /* Pods-ThumbARide.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ThumbARide.release.xcconfig"; path = "Pods/Target Support Files/Pods-ThumbARide/Pods-ThumbARide.release.xcconfig"; sourceTree = "<group>"; };
 		65D5A6D4070BBD948663D9E5 /* Pods_ThumbARide.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ThumbARide.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8E3F94F01BFD4EA00019036D /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		8E3F94F11BFD4EA00019036D /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		8E3F94F31BFD4EC00019036D /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		8E3F94F41BFD4EC00019036D /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		8E3F94F71BFD4EDC0019036D /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		BB00D24114A99503DB0A2908 /* Pods-ThumbARide.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ThumbARide.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ThumbARide/Pods-ThumbARide.debug.xcconfig"; sourceTree = "<group>"; };
 		BE3F15331BFD220B0072E5F2 /* ThumbARide.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ThumbARide.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		BE3F15361BFD220B0072E5F2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		BE3F15381BFD220B0072E5F2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		BE3F153B1BFD220B0072E5F2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		BE3F153D1BFD220B0072E5F2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BE3F15401BFD220B0072E5F2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -70,13 +74,16 @@
 		BE3F15351BFD220B0072E5F2 /* ThumbARide */ = {
 			isa = PBXGroup;
 			children = (
-				BE3F15361BFD220B0072E5F2 /* AppDelegate.swift */,
-				BE3F15381BFD220B0072E5F2 /* ViewController.swift */,
 				BE3F153A1BFD220B0072E5F2 /* Main.storyboard */,
 				BE3F153D1BFD220B0072E5F2 /* Assets.xcassets */,
 				BE3F153F1BFD220B0072E5F2 /* LaunchScreen.storyboard */,
 				BE3F15421BFD220B0072E5F2 /* Info.plist */,
 				BE3F15541BFD4AA20072E5F2 /* ThumbARide-Bridging-Header.h */,
+				8E3F94F01BFD4EA00019036D /* LoginViewController.h */,
+				8E3F94F11BFD4EA00019036D /* LoginViewController.m */,
+				8E3F94F31BFD4EC00019036D /* AppDelegate.h */,
+				8E3F94F41BFD4EC00019036D /* AppDelegate.m */,
+				8E3F94F71BFD4EDC0019036D /* main.m */,
 			);
 			path = ThumbARide;
 			sourceTree = "<group>";
@@ -212,8 +219,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BE3F15391BFD220B0072E5F2 /* ViewController.swift in Sources */,
-				BE3F15371BFD220B0072E5F2 /* AppDelegate.swift in Sources */,
+				8E3F94F51BFD4EC00019036D /* AppDelegate.m in Sources */,
+				8E3F94F81BFD4EDC0019036D /* main.m in Sources */,
+				8E3F94F21BFD4EA00019036D /* LoginViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

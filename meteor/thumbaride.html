@@ -1,8 +1,11 @@
 <head>
-  <title>thumbaride</title>
+  <title>Thumb-a-ride Dashboard</title>
 </head>
 
 <body>
+
+  {{> map}}
+
   <h1>Thumb-a-Ride</h1>
 
 {{> loginButtons}}
@@ -15,7 +18,10 @@
 
 <template name="hello">
 	<img src="{{ profile_pic }}" width="50">
-<br><br>
-  <button>Click Me</button>
-  <p>You've pressed the button {{counter}} times.</p>
+</template>
+
+<template name="map">
+  <div class="map-container">
+    {{> googleMap name="map" options=mapOptions}}
+  </div>
 </template>
