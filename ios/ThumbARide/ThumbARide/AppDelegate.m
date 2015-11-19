@@ -11,9 +11,11 @@
 #import "RideViewController.h"
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
+@import GoogleMaps;
+
+static NSString * const kGoogleMapsAPIKey = @"AIzaSyBGiI5rT3mXPgdgYy29IEfAg01lPx089NI";
 
 @implementation AppDelegate
-
 
 - (BOOL)application:(UIApplication *)application
 didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
@@ -26,6 +28,9 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
         self.window.rootViewController = [LoginViewController new];
     }
     
+    [GMSServices provideAPIKey:kGoogleMapsAPIKey];
+
+    // add google key
     return YES;
 }
 
