@@ -172,7 +172,11 @@ Template.map.helpers({
 		if (GoogleMaps.loaded()) {
 			return {
 				center: new google.maps.LatLng(37.8103920, -122.2659000),
-				zoom: 8
+				zoom: 11,
+				mapTypeControlOptions: {
+					style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
+					position: google.maps.ControlPosition.TOP_RIGHT
+				}
 			};
 		}
 	}

@@ -1,23 +1,14 @@
 
 <template name="driver_table">
     {{#if drivers.count}}
-        <table border="1" cellpadding="5" style="width:100%;">
-            <tr>
-                <th colspan="3">Drivers</th>
-            </tr>
-            <tr>
-                <th>Pic</th>
-                <th>Name</th>
-                <th>Distance (mi)</th>
-            </tr>
+		<h2>Drivers</h2>
         {{#each drivers}}
-            <tr>
-                <td><img src="http://graph.facebook.com/v2.5/{{ fb_id }}/picture" width="50"></td>
-                <td>{{ name }}</td>
-                <td>{{ distance }}</td>
-            </tr>
+            <div class="row">
+                <div class="col image"><img src="http://graph.facebook.com/v2.5/{{ fb_id }}/picture" width="50"></div>
+				<div class="col name">{{ name }}</div>
+				<div class="col dist">{{ distance }}</div>
+            </div>
         {{/each}}
-        </table>
     {{/if}}
 </template>
 
@@ -25,22 +16,13 @@
 
 <template name="passenger_table">
     {{#if passengers.count}}
-        <table border="1" cellpadding="5" style="width:100%;">
-            <tr>
-                <th colspan="3">Passengers</th>
-            </tr>
-            <tr>
-                <th>Pic</th>
-                <th>Name</th>
-                <th>Distance (mi)</th>
-            </tr>
+		<h2>Passengers</h2>
         {{#each passengers}}
-            <tr>
-                <td><img src="http://graph.facebook.com/v2.5/{{ fb_id }}/picture" width="50"></td>
-                <td>{{ name }}</td>
-                <td>{{ distance }}</td>
-            </tr>
+			<div class="row">
+				<div class="col image"><img src="http://graph.facebook.com/v2.5/{{ fb_id }}/picture" width="50"></div>
+				<div class="col name">{{ name }}</div>
+				<div class="col dist">{{ distance }}</div>
+			</div>
         {{/each}}
-        </table>
     {{/if}}
 </template>
