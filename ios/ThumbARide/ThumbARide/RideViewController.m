@@ -40,6 +40,9 @@
 @property (nonatomic) AnnotationMode mode;
 @property (nonatomic, strong) UIProgressView *progressView;
 @property (nonatomic, strong) FBSDKLoginButton *logoutButton;
+@property (nonatomic, strong) MKDirections *directions;
+@property (nonatomic, strong) MKRoute *currentRoute;
+@property (nonatomic, strong) MKPointAnnotation *currentUser;
 @end
 
 @implementation RideViewController
@@ -285,7 +288,6 @@
     
     switch ([alertMode integerValue]) {
         case 0: {
-            
             NSString *title = @"";
             NSString *msg = @"";
             if (self.mode == AnnotationModeDriver) {
@@ -293,7 +295,7 @@
                 msg = @"Now go pick them up!";
             } else if (self.mode == AnnotationModePasenger) {
                 title = @"Be ready outside";
-                msg = @"Your driver will arrive in 2 min";
+                msg = [NSString stringWithFormat:@"Your driver will arrive in %@ min", @1]; //@(round([self.currentRoute expectedTravelTime] / 60.0))];
             }
             UIAlertController *alert = [UIAlertController alertControllerWithTitle:title
                                                                            message:msg
@@ -356,52 +358,34 @@
     if (self.mode == AnnotationModeDriver)
         return;
     
-    // as a passenger, pick a car and update car location
-    if (self.mapView.annotations.count <= 1)
-        return;
+    NSUInteger pointCount = self.currentRoute.polyline.pointCount;
+    CLLocationCoordinate2D *routeCoordinates = malloc(pointCount * sizeof(CLLocationCoordinate2D));
+    [self.currentRoute.polyline getCoordinates:routeCoordinates
+                             range:NSMakeRange(0, pointCount)];
     
-    MKPointAnnotation *annotation = nil;
-    for (id<MKAnnotation> annot in self.mapView.annotations) {
-        if (![annot isKindOfClass:[MKUserLocation class]]) {
-            annotation = annot;
-            break;
-        }
-    }
-    
-    [self updateCoord:nil];
-//    double deltaLat = self.updatedCoord.latitude - annotation.coordinate.latitude;
-//    double deltaLong = self.updatedCoord.longitude - annotation.coordinate.longitude;
-//    deltaLat /= 2;
-//    deltaLong /= 2;
-//    
-//    __block double initLat = annotation.coordinate.latitude;
-//    __block double initLong = annotation.coordinate.longitude;
-    
-    [UIView animateWithDuration:10
-                          delay:0
-                        options:UIViewAnimationOptionCurveLinear
-                     animations:^{
+    NSTimeInterval stepDuration = 40 / pointCount;
 
-                         annotation.coordinate = self.updatedCoord;
-//
-//                         int i=0;
-//                         while (i++ < 2) {
-//                             
-//                             initLat += deltaLat;
-//                             annotation.coordinate = CLLocationCoordinate2DMake(initLat, initLong);
-//                         }
-//                         
-//                         i = 0;
-//                         while (i++ < 2) {
-//                             initLong += deltaLong;
-//                             annotation.coordinate = CLLocationCoordinate2DMake(initLat, initLong);
-//                         }
-                         
-                     } completion:^(BOOL finished) {
-                         [self showAlert:@1];
-                     }];
+    [self executeRoute:routeCoordinates duration:stepDuration currentPoint:0 pointsCount:pointCount];
     
+    free(routeCoordinates);
+    return;
 }
+
+- (void)executeRoute:(CLLocationCoordinate2D *)coordinates duration:(NSTimeInterval)duration currentPoint:(NSInteger)currentPoint pointsCount:(NSInteger)pointsCount {
+    if (currentPoint < pointsCount) {
+        [UIView animateWithDuration:duration animations:^{
+            self.currentUser.coordinate = coordinates[currentPoint];
+        } completion:^(BOOL finished) {
+            if (finished) {
+                [self executeRoute:coordinates duration:duration currentPoint:currentPoint + 1 pointsCount:pointsCount];
+            }
+        }];
+    }
+    else {
+        [self showAlert:@1];
+    }
+}
+              
 
 - (void)setMode:(AnnotationMode)mode {
     
@@ -469,7 +453,39 @@
                              [self.progressView setProgress:self.progressView.progress+stepSize animated:YES];
                          }
                      } completion:^(BOOL finished) {
-                         [self performSelector:@selector(showAlert:) withObject:@0 afterDelay:5];
+                         // as a passenger, pick a car and update car location
+                         if (self.mapView.annotations.count <= 1)
+                             return;
+                         
+                         MKPointAnnotation *annotation = nil;
+                         for (id<MKAnnotation> annot in self.mapView.annotations) {
+                             if (![annot isKindOfClass:[MKUserLocation class]]) {
+                                 annotation = annot;
+                                 break;
+                             }
+                         }
+                         
+                         [self updateCoord:nil];
+
+                         MKPlacemark *destinationMark = [[MKPlacemark alloc] initWithCoordinate:self.updatedCoord addressDictionary:nil];
+                         MKMapItem *destinationItem = [[MKMapItem alloc] initWithPlacemark:destinationMark];
+                         
+                         MKPlacemark *sourceMark = [[MKPlacemark alloc] initWithCoordinate:annotation.coordinate addressDictionary:nil];
+                         MKMapItem *sourceItem = [[MKMapItem alloc] initWithPlacemark:sourceMark];
+                         
+                         MKDirectionsRequest *request = [[MKDirectionsRequest alloc] init];
+                         [request setSource:sourceItem];
+                         [request setDestination:destinationItem];
+                         
+                         self.directions = [[MKDirections alloc] initWithRequest:request];
+                         [self.directions calculateDirectionsWithCompletionHandler:^(MKDirectionsResponse * _Nullable response, NSError * _Nullable error) {
+                             self.directions = nil;
+                             self.currentRoute = [response.routes firstObject];
+                             self.currentUser = annotation;
+                             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                                 [self showAlert:@0];
+                             });
+                         }];
                      }];
 }
 
@@ -531,15 +547,17 @@
 }
 
 - (void)updateNearbyEntites {
-    for (int i=1; self.mapView.annotations.count < 6; i++) {
-        [self.mapView addAnnotation:[MKPointAnnotation new]];
-    }
-    
-    for (MKPointAnnotation *annotation in self.mapView.annotations) {
-        CLLocationCoordinate2D coordinate = [self randCoord];
-        NSLog(@"xx: %f, yy: %f", coordinate.latitude, coordinate.longitude);
-        annotation.coordinate = coordinate;
-    }
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        for (int i=1; self.mapView.annotations.count < 6; i++) {
+            [self.mapView addAnnotation:[MKPointAnnotation new]];
+        }
+        
+        for (MKPointAnnotation *annotation in self.mapView.annotations) {
+            CLLocationCoordinate2D coordinate = [self randCoord];
+            NSLog(@"xx: %f, yy: %f", coordinate.latitude, coordinate.longitude);
+            annotation.coordinate = coordinate;
+        }
+    });
 }
 
 - (void)rideViewModel:(RideViewModel *)model willCenterOnCurrentLocation:(CLLocationCoordinate2D)coord {
