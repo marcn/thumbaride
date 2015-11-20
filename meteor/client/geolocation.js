@@ -9,7 +9,7 @@ Meteor.startup(function () {
 				fb_id: Meteor.user().services.facebook.id,
 				from_location: [position.coords.latitude, position.coords.longitude],
 	            to_location: [position.coords.latitude, position.coords.longitude],
-				//status: PASSENGER_STATE.FOUNDRIDE.name,
+				status: "self",
 				passengers : [],
 				driver : null,
 				type: "observer"
