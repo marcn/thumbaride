@@ -30,7 +30,9 @@ function getIcon(status){
 		icon = icon + "icon-car-32.png"
 	}else if (status == "foundriders"){
 		icon = icon + "icon-car-full-32.png"
-	} 
+	}else if (status == "self") {
+		icon = icon + "icon-gps-node-32.png";
+	}
 
 	return icon;
 }
@@ -159,8 +161,8 @@ Template.map.onCreated(function () {
 			var currentUserInfo = Session.get("currentUserInfo");
 			if (currentUserInfo) {
 				console.log("Tracker got updated currentUserInfo: ", currentUserInfo);
-				//removePanda(currentUserInfo);
-				//addPanda(currentUserInfo);
+				removePanda(currentUserInfo, map);
+				addPanda(currentUserInfo, map);
 			}
 		});
 	});
