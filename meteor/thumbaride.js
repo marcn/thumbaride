@@ -43,6 +43,12 @@ if (Meteor.isServer) {
 
 			return {"method": "mobileLogin", "data": {"userId": user_id}};
 		},
+
+		"resetData": function() {
+			// For resetting/reloading the Pandas collection to default state
+			Pandas.remove({});
+			loadTestData();
+		},
 		
 		"listDrivers" : function (lat, lon) {
 			return Pandas.find({type : "driver"}, {sort: {createdAt: -1}});

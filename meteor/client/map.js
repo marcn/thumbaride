@@ -154,6 +154,15 @@ Template.map.onCreated(function () {
 				removePanda(oldDocument);
 			}
 		});
+
+		Tracker.autorun(function() {
+			var currentUserInfo = Session.get("currentUserInfo");
+			if (currentUserInfo) {
+				console.log("Tracker got updated currentUserInfo: ", currentUserInfo);
+				//removePanda(currentUserInfo);
+				//addPanda(currentUserInfo);
+			}
+		});
 	});
 });
 
