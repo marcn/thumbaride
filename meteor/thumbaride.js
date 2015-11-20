@@ -70,9 +70,12 @@ if (Meteor.isServer) {
 			
 			Pandas.update({fb_id: passengerFBId}, {$set: {status: "foundride"}})
 			Pandas.update({fb_id: passengerFBId}, {$set: {driver: driverFBId}})			
-		}		
-		
-		
+			
+		},
+		"foundriders" : function (args) {
+			var driverFBId = args[0];
+			Pandas.update({fb_id : driverFBId}, {$set: {status: "foundriders"}});
+		}						
 	});
 
 }
