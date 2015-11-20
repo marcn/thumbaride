@@ -1,6 +1,6 @@
 
 <template name="driver_table">
-    {{#if drivers}}
+    {{#if drivers.count}}
         <table border="1" cellpadding="5" style="width:100%;">
             <tr>
                 <th colspan="3">Drivers</th>
@@ -24,7 +24,7 @@
 
 
 <template name="passenger_table">
-    {{#if passengers}}
+    {{#if passengers.count}}
         <table border="1" cellpadding="5" style="width:100%;">
             <tr>
                 <th colspan="3">Passengers</th>
