@@ -15,6 +15,7 @@
 		386D91311BFE9D6100A287FA /* PickupAnnoationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 386D91301BFE9D6100A287FA /* PickupAnnoationView.m */; };
 		386D91341BFE9D7500A287FA /* DestinationAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 386D91331BFE9D7500A287FA /* DestinationAnnotationView.m */; };
 		386D91361BFEAE6B00A287FA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 386D91351BFEAE6B00A287FA /* Assets.xcassets */; };
+		3FE7C7301BFF976500CF1606 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3FE7C72F1BFF976500CF1606 /* LaunchScreen.storyboard */; };
 		8E3F94F21BFD4EA00019036D /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E3F94F11BFD4EA00019036D /* LoginViewController.m */; };
 		8E3F94F51BFD4EC00019036D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E3F94F41BFD4EC00019036D /* AppDelegate.m */; };
 		8E3F94F81BFD4EDC0019036D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E3F94F71BFD4EDC0019036D /* main.m */; };
@@ -39,6 +40,7 @@
 		386D91321BFE9D7500A287FA /* DestinationAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DestinationAnnotationView.h; sourceTree = "<group>"; };
 		386D91331BFE9D7500A287FA /* DestinationAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DestinationAnnotationView.m; sourceTree = "<group>"; };
 		386D91351BFEAE6B00A287FA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		3FE7C72F1BFF976500CF1606 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		65D5A6D4070BBD948663D9E5 /* Pods_ThumbARide.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ThumbARide.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E3F94F01BFD4EA00019036D /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		8E3F94F11BFD4EA00019036D /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
@@ -143,6 +145,7 @@
 				8E3F94FA1BFD51E90019036D /* RideViewController.m */,
 				8E3F94FC1BFD59280019036D /* RideViewModel.h */,
 				8E3F94FD1BFD59280019036D /* RideViewModel.m */,
+				3FE7C72F1BFF976500CF1606 /* LaunchScreen.storyboard */,
 			);
 			path = ThumbARide;
 			sourceTree = "<group>";
@@ -220,6 +223,7 @@
 				BE3F15411BFD220B0072E5F2 /* LaunchScreen.storyboard in Resources */,
 				BE3F153C1BFD220B0072E5F2 /* Main.storyboard in Resources */,
 				386D91361BFEAE6B00A287FA /* Assets.xcassets in Resources */,
+				3FE7C7301BFF976500CF1606 /* LaunchScreen.storyboard in Resources */,
 				38187A281BFD562C009089C4 /* DetailsViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
