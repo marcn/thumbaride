@@ -12,6 +12,7 @@
 
 @property (nonatomic, strong) CLLocationManager *locationManager;
 @property (nonatomic) BOOL shouldCenterOnCurrentLocation;
+@property (nonatomic, strong) CLGeocoder *geocoder;
 
 @end
 
@@ -25,6 +26,7 @@
         _locationManager.distanceFilter = kCLDistanceFilterNone;
         _locationManager.desiredAccuracy = kCLLocationAccuracyBest;
         _locationManager.delegate = self;
+        _geocoder = [CLGeocoder new];
     }
 
     return self;
@@ -74,6 +76,29 @@
         [self.delegate rideViewModel:self willCenterOnCurrentLocation:loc.coordinate];
         self.shouldCenterOnCurrentLocation = NO;
     }
+}
+
+- (void)updateAddressWithCoord:(CLLocationCoordinate2D)coord
+{
+    CLLocation *loc = [[CLLocation alloc] initWithLatitude:coord.latitude longitude:coord.longitude];
+    [self.geocoder reverseGeocodeLocation:loc completionHandler:^(NSArray *placemarks, NSError *error) {
+        if(error){
+            NSLog(@"%@", [error localizedDescription]);
+        }
+        
+        CLPlacemark *placemark = [placemarks lastObject];
+        
+        NSString *address = [NSString stringWithFormat:@"%@ %@\n%@ %@\n%@\n%@",
+                              placemark.subThoroughfare, placemark.thoroughfare,
+                              placemark.postalCode, placemark.locality,
+                              placemark.administrativeArea,
+                              placemark.country];
+        
+        if ([address rangeOfString:@"null"].length == 0) {
+            [self.delegate rideViewModel:self didUpdateAddress:address];
+        }
+            
+    }];
 }
 
 

@@ -11,6 +11,8 @@
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 #import "RideViewController.h"
 
+#define FORCE_LOGIN 1
+
 @interface LoginViewController () <FBSDKLoginButtonDelegate>
 
 @end
@@ -35,6 +37,21 @@
     
     FBSDKLoginButton *loginButton = [[FBSDKLoginButton alloc] init];
     loginButton.delegate = self;
+    
+#if FORCE_LOGIN
+    
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"splash-6"]];
+    imageView.frame = self.view.bounds;
+    [self.view addSubview:imageView];
+    imageView.alpha = 0.5;
+    UIButton *button = [UIButton new];
+    loginButton.userInteractionEnabled = NO;
+    [button addSubview:loginButton];
+    button.frame = self.view.bounds;
+    [button addTarget:self action:@selector(forceLogin:) forControlEvents:UIControlEventTouchUpInside];
+    loginButton.center = self.view.center;
+    [self.view addSubview:button];
+#else
     loginButton.center = CGPointMake(self.view.center.x, self.view.center.y + 75);
     [self.view addSubview:loginButton];
     
@@ -42,6 +59,14 @@
     [UIView animateWithDuration:.3 animations:^{
         loginButton.alpha = 1;
     }];
+
+    [self.view addSubview:loginButton];
+#endif
+}
+
+- (void)forceLogin:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
+    [self loadMapView];
 }
 
 - (void)loginButton:(FBSDKLoginButton *)loginButton didCompleteWithResult:(FBSDKLoginManagerLoginResult *)result error:(NSError *)error {
@@ -60,13 +85,13 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end

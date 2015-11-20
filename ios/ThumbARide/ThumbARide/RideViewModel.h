@@ -13,6 +13,7 @@
 @class RideViewModel;
 @protocol RideViewModelDelegate <NSObject>
 
+- (void)rideViewModel:(RideViewModel *)model didUpdateAddress:(NSString *)address;
 - (void)rideViewModel:(RideViewModel *)model didFinishLoading:(NSDictionary *)data;
 - (void)rideViewModel:(RideViewModel *)model willCenterOnCurrentLocation:(CLLocationCoordinate2D)coord;
 
@@ -27,6 +28,7 @@
 - (void)fetchDataWithParams:(NSDictionary *)params;
 - (void)requestLocationAuthorization;
 - (void)refreshLocation;
+- (void)updateAddressWithCoord:(CLLocationCoordinate2D)coord;
 
 @end
 

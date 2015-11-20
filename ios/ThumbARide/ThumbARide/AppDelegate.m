@@ -13,8 +13,6 @@
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 #import "DetailsViewController.h"
 
-#define FORCE_SHOW_MAP 1
-
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application
@@ -22,16 +20,11 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [[FBSDKApplicationDelegate sharedInstance] application:application
                              didFinishLaunchingWithOptions:launchOptions];
 
-#if FORCE_SHOW_MAP
-    self.window.rootViewController = [RideViewController new];
-#else
-    
     if ([FBSDKAccessToken currentAccessToken] != nil) {
         self.window.rootViewController = [RideViewController new];
     } else {
         self.window.rootViewController = [LoginViewController new];
     }
-#endif
     
 /*    UINavigationController *controller = [[UINavigationController alloc] initWithRootViewController:[[DetailsViewController alloc] init]];
     self.window.rootViewController = controller;*/
