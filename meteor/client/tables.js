@@ -6,8 +6,9 @@ function addDistanceTransform(item) {
 	if (currentUserInfo && currentUserInfo.from_location) {
 		var a = new google.maps.LatLng(currentUserInfo.from_location[1], currentUserInfo.from_location[0]);
 		var b = new google.maps.LatLng(item.from_location[1], item.from_location[0]);
-		var distance = google.maps.geometry.spherical.computeDistanceBetween(a, b);		// in meters
-		item['distance'] = Math.round(distance / 100) / 10;
+		var distanceMeters = google.maps.geometry.spherical.computeDistanceBetween(a, b);
+		var distanceMiles = distanceMeters * 0.000621371;
+		item['distance'] = Math.round(distanceMiles * 10) / 10;	// show accuracy to 0.1 mile
 	} else {
 		item['distance'] = "-";
 	}
