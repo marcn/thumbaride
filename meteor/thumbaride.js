@@ -1,5 +1,5 @@
 
-
+ 
 if (Meteor.isClient) {
 
 	Meteor.startup(function () {
@@ -59,7 +59,19 @@ if (Meteor.isServer) {
 			var long = args[1];
 			
 			return Pandas.find({type : "passenger"}, {sort: {createdAt: -1}});
-		}
+		},
+
+		"pickupThumbs" : function (args) {
+		
+			var driverFBId = args[0];
+			var passengerFBId = args[1];
+			
+			Pandas.update(driverFBId, {$push: {passengers: passengerFBId}})
+			
+			Pandas.update(passengerFBId, {$set: {status: "foundride"}})
+			Pandas.update(passengerFBId, {$set: {driver: driverFBId}})			
+		}		
+		
 		
 	});
 
