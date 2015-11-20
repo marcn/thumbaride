@@ -27,10 +27,21 @@
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor lightGrayColor];
     
+    UIImageView *splashImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"splash-6plus"]];
+    splashImage.contentMode = UIViewContentModeScaleAspectFill;
+    splashImage.frame = self.view.bounds;
+    splashImage.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    [self.view addSubview:splashImage];
+    
     FBSDKLoginButton *loginButton = [[FBSDKLoginButton alloc] init];
     loginButton.delegate = self;
-    loginButton.center = self.view.center;
+    loginButton.center = CGPointMake(self.view.center.x, self.view.center.y + 75);
     [self.view addSubview:loginButton];
+    
+    loginButton.alpha = 0;
+    [UIView animateWithDuration:.3 animations:^{
+        loginButton.alpha = 1;
+    }];
 }
 
 - (void)loginButton:(FBSDKLoginButton *)loginButton didCompleteWithResult:(FBSDKLoginManagerLoginResult *)result error:(NSError *)error {
