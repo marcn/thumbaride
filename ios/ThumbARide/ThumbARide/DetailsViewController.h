@@ -7,16 +7,20 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MapKit/MapKit.h>
+
+@protocol DetailsViewControllerDelegate;
 
 @interface DetailsViewController : UIViewController
 
-@property (nonatomic, strong) NSDictionary *user;
+@property (nonatomic, weak) id<DetailsViewControllerDelegate> delegate;
+- (instancetype)initWithUser:(NSDictionary *)user;
 
-@property (nonatomic, weak) IBOutlet UIImageView *imageView;
-@property (nonatomic, weak) IBOutlet UILabel *nameLabel;
-@property (nonatomic, weak) IBOutlet UILabel *phoneNumberLabel;
-@property (nonatomic, weak) IBOutlet UILabel *currentLocationLabel;
-@property (nonatomic, weak) IBOutlet UILabel *destinationLabel;
-//@property (nonatomic, weak) IBOutlet *destinationMapView;
+@end
+
+@protocol DetailsViewControllerDelegate <NSObject>
+
+- (void)detailsViewControllerDidCancel:(DetailsViewController *)controller;
+- (void)detailsViewControllerDidPickUp:(DetailsViewController *)controller;
 
 @end
