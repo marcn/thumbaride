@@ -44,27 +44,16 @@ if (Meteor.isServer) {
 			return {"method": "mobileLogin", "data": {"userId": user_id}};
 		},
 		
-		"listDrivers" : function (args) {
-		
-			var lat = args[0];
-			var long = args[1];
-			
+		"listDrivers" : function (lat, lon) {
 			return Pandas.find({type : "driver"}, {sort: {createdAt: -1}});
 
 		},
 		
-		"listThumbs" : function (args) {
-		
-			var lat = args[0];
-			var long = args[1];
-			
+		"listThumbs" : function (lat, lon) {			
 			return Pandas.find({type : "passenger"}, {sort: {createdAt: -1}});
 		},
 
-		"pickupThumbs" : function (args) {
-		
-			var driverFBId = args[0];
-			var passengerFBId = args[1];
+		"pickupThumbs" : function (driverFBId, passengerFBId) {
 			
 			Pandas.update({fb_id: driverFBId}, {$push: {passengers: passengerFBId}})
 			
@@ -72,8 +61,7 @@ if (Meteor.isServer) {
 			Pandas.update({fb_id: passengerFBId}, {$set: {driver: driverFBId}})			
 			
 		},
-		"foundriders" : function (args) {
-			var driverFBId = args[0];
+		"foundriders" : function (driverFBId) {
 			Pandas.update({fb_id : driverFBId}, {$set: {status: "foundriders"}});
 		}						
 	});
