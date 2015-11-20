@@ -21,15 +21,17 @@
 
 //static NSString * const kGoogleMapsAPIKey = @"AIzaSyBGiI5rT3mXPgdgYy29IEfAg01lPx089NI";
 
-@interface RideViewController () <RideViewModelDelegate, MKMapViewDelegate, FBSDKLoginButtonDelegate>
+@interface RideViewController () <RideViewModelDelegate, MKMapViewDelegate, FBSDKLoginButtonDelegate, UIGestureRecognizerDelegate>
 
 @property (nonatomic, strong) RideViewModel *viewModel;
 @property (nonatomic, strong) MKMapView *mapView;
-@property (nonatomic, strong) MKPinAnnotationView *pin;
+@property (nonatomic, strong) MKPinAnnotationView *apin;
+@property (nonatomic, strong) UIImageView *pin;
 //@property (nonatomic, strong) GMSMapView *gmapView;
 @property (nonatomic, strong) UITextField *pickup;
 @property (nonatomic, strong) UITextField *destination;
 @property (nonatomic, strong) UISwitch *mode;
+@property (nonatomic) BOOL shouldShowCurrentLocation;
 @property (nonatomic, strong) FBSDKLoginButton *logoutButton;
 
 @end
@@ -52,7 +54,14 @@
     self.mapView.showsPointsOfInterest = YES;
     self.mapView.showsCompass = NO;
     self.mapView.showsUserLocation = YES;
+    self.mapView.delegate = self;    
+    self.shouldShowCurrentLocation = YES;
+    
     self.mapView.delegate = self;
+
+    self.pin = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon-start-32"]];
+    self.pin.center = self.view.center;
+    [self.mapView addSubview:self.pin];
     
     self.pickup = [UITextField new];
     self.destination = [UITextField new];
@@ -119,9 +128,15 @@
     
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tap:)];
+    UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(pan:)];
     UISwipeGestureRecognizer *swipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipe:)];
     UIPinchGestureRecognizer *pinch = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(pinch:)];
     
+    tap.delegate = self;
+    pan.delegate = self;
+    swipe.delegate = self;
+    pinch.delegate = self;
+    [self.view addGestureRecognizer:pan];
     [self.view addGestureRecognizer:tap];
     [self.view addGestureRecognizer:swipe];
     [self.view addGestureRecognizer:pinch];
@@ -131,8 +146,16 @@
     if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusNotDetermined) {
         [self.viewModel requestLocationAuthorization];
     } else {
-        [self.viewModel refreshLocation];
+        if (self.shouldShowCurrentLocation) {
+            [self.viewModel refreshLocation];
+            [self.mapView setCenterCoordinate:self.viewModel.locationCoord zoomLevel:15 animated:YES];
+            self.shouldShowCurrentLocation = NO;
+        }
     }
+}
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
+    return YES;
 }
 
 - (void)tap:(UIGestureRecognizer *)g {
@@ -147,6 +170,9 @@
     
 }
 
+- (void)pan:(UIGestureRecognizer *)g {
+    
+}
 
 - (void)swipe:(UIGestureRecognizer *)g {
     
@@ -175,11 +201,8 @@
 
 # pragma mark - ride view model
 
-- (void)rideViewModel:(RideViewModel *)model didUpdateLocation:(CLLocationCoordinate2D)coord {
- 
-    MKPointAnnotation *annotation = self.mapView.annotations.firstObject;
-    [annotation setCoordinate:coord];
-    [self.mapView setCenterCoordinate:coord zoomLevel:15 animated:YES];
+- (void)rideViewModel:(RideViewModel *)model willCenterOnCurrentLocation:(CLLocationCoordinate2D)coord {
+    [self.mapView setCenterCoordinate:self.viewModel.locationCoord zoomLevel:15 animated:YES];
 }
 
 - (void)rideViewModel:(RideViewModel *)model didFinishLoading:(NSDictionary *)data {
@@ -213,5 +236,38 @@ didChangeDragState:(MKAnnotationViewDragState)newState
     
 }
 
+static BOOL mapChangedFromUserInteraction = NO;
 
+- (BOOL)mapViewRegionDidChangeFromUserInteraction
+{
+    UIView *view = self.mapView.subviews.firstObject;
+    //  Look through gesture recognizers to determine whether this region change is from user interaction
+    for(UIGestureRecognizer *recognizer in view.gestureRecognizers) {
+        if(recognizer.state == UIGestureRecognizerStateBegan || recognizer.state == UIGestureRecognizerStateEnded) {
+            return YES;
+        }
+    }
+    
+    return NO;
+}
+
+- (void)mapView:(MKMapView *)mapView regionWillChangeAnimated:(BOOL)animated
+{
+    mapChangedFromUserInteraction = [self mapViewRegionDidChangeFromUserInteraction];
+    
+    if (mapChangedFromUserInteraction) {
+        // user changed map region
+    }
+}
+
+- (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated
+{
+    PickupAnnoationView *view = [mapView viewForAnnotation:self.mapView.annotations.firstObject];
+    view.dragState = MKAnnotationViewDragStateEnding;
+    NSLog(@"%@:%@", @([view.annotation coordinate].latitude), @([view.annotation coordinate].longitude));
+    if (mapChangedFromUserInteraction) {
+        
+        // user changed map region
+    }
+}
 @end
