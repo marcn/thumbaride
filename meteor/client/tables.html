@@ -1,0 +1,46 @@
+
+<template name="driver_table">
+    {{#if drivers}}
+        <table border="1" cellpadding="5" style="width:100%;">
+            <tr>
+                <th colspan="3">Drivers</th>
+            </tr>
+            <tr>
+                <th>Pic</th>
+                <th>Name</th>
+                <th>Distance (km)</th>
+            </tr>
+        {{#each drivers}}
+            <tr>
+                <td><img src="http://graph.facebook.com/v2.5/{{ fb_id }}/picture" width="50"></td>
+                <td>{{ name }}</td>
+                <td>{{ distance }}</td>
+            </tr>
+        {{/each}}
+        </table>
+    {{/if}}
+</template>
+
+
+
+<template name="passenger_table">
+    {{#if passengers}}
+        <table border="1" cellpadding="5" style="width:100%;">
+            <tr>
+                <th colspan="3">Passengers</th>
+            </tr>
+            <tr>
+                <th>Pic</th>
+                <th>Name</th>
+                <th>Distance (km)</th>
+            </tr>
+        {{#each passengers}}
+            <tr>
+                <td><img src="http://graph.facebook.com/v2.5/{{ fb_id }}/picture" width="50"></td>
+                <td>{{ name }}</td>
+                <td>{{ distance }}</td>
+            </tr>
+        {{/each}}
+        </table>
+    {{/if}}
+</template>

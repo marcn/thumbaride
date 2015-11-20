@@ -44,7 +44,7 @@ function addMarkers(document, map){
 
 	var from = new google.maps.Marker({
 					animation: google.maps.Animation.DROP,
-					position: new google.maps.LatLng(document.from_location[0], document.from_location[1]),
+					position: new google.maps.LatLng(document.from_location[1], document.from_location[0]),
 					map: map.instance,
 					id: document._id,
 					title: document.name, 
@@ -53,7 +53,7 @@ function addMarkers(document, map){
 				});
 	var to = new google.maps.Marker({
 					animation: google.maps.Animation.DROP,
-					position: new google.maps.LatLng(document.to_location[0], document.to_location[1]),
+					position: new google.maps.LatLng(document.to_location[1], document.to_location[0]),
 					map: map.instance,
 					id: document._id,
 					title: document.name, 
@@ -160,7 +160,6 @@ Template.map.onCreated(function () {
 		Tracker.autorun(function() {
 			var currentUserInfo = Session.get("currentUserInfo");
 			if (currentUserInfo) {
-				console.log("Tracker got updated currentUserInfo: ", currentUserInfo);
 				removePanda(currentUserInfo, map);
 				addPanda(currentUserInfo, map);
 			}
