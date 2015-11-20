@@ -1,3 +1,21 @@
+/* overrides for facebook styles */
+
+#login-buttons {
+    position: fixed;
+    bottom: 10px;
+    left: 10px;
+}
+
+
+
+
+
+
+body {
+    margin: 0;
+    font-family: 'Gudea', sans-serif;
+}
+
 .map-container {
     height: 100%;
     width: 100%;
@@ -15,15 +33,62 @@
 .userTable {
     position: fixed;
     border: 1px solid lightskyblue;
-    top: 150px;
-    left: 20px;
+    top: 10px;
+    left: 10px;
     width: 300px;
-    padding: 20px;
-    background-color: rgba(255,255,255,0.8);
+    padding-top: 30px;
+    background-color: rgba(255,255,255,0.85);
 }
 
 
-.logo {
+.userTable .logo {
     width: 200px;
     margin-left: 40px;
+}
+
+.userTable .row {
+    border-bottom: 1px solid #ccc;
+    font-size: 0;
+    padding: 10px;
+}
+
+.userTable .col {
+    display: inline-block;
+    font-size: 14px;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.userTable h2 {
+    font-weight: bold;
+    padding-left: 10px;
+    margin: 0;
+    color: #666;
+    padding-top: 20px;
+    border-bottom: 1px solid #666;
+    padding-bottom: 10px;
+    font-size: 16px;
+}
+
+.col.image {
+    width: 50px;
+    margin-right: 10px;
+}
+
+.col.image img {
+    display: block;
+}
+
+.col.name {
+    width: 150px;
+    line-height: 50px;
+    margin-right: 10px;
+}
+
+.col.dist {
+    width: 60px;
+    line-height: 50px;
+    font-style: italic;
 }
