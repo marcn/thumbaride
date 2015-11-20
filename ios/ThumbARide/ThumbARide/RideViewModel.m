@@ -11,6 +11,7 @@
 @interface RideViewModel ()
 
 @property (nonatomic, strong) CLLocationManager *locationManager;
+@property (nonatomic) BOOL shouldCenterOnCurrentLocation;
 
 @end
 
@@ -61,12 +62,18 @@
     if (status == kCLAuthorizationStatusAuthorizedWhenInUse ||
         status == kCLAuthorizationStatusAuthorizedAlways) {
         [self.locationManager startUpdatingLocation];
+        self.shouldCenterOnCurrentLocation = YES;
     }
 }
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations {
-    CLLocation *loc = locations.firstObject;
-    [self.delegate rideViewModel:self didUpdateLocation:loc.coordinate];
+    
+    if (self.shouldCenterOnCurrentLocation) {
+        
+        CLLocation *loc = locations.firstObject;
+        [self.delegate rideViewModel:self willCenterOnCurrentLocation:loc.coordinate];
+        self.shouldCenterOnCurrentLocation = NO;
+    }
 }
 
 
