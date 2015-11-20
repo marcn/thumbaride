@@ -14,7 +14,7 @@
 @protocol RideViewModelDelegate <NSObject>
 
 - (void)rideViewModel:(RideViewModel *)model didFinishLoading:(NSDictionary *)data;
-- (void)rideViewModel:(RideViewModel *)model didUpdateLocation:(CLLocationCoordinate2D)coord;
+- (void)rideViewModel:(RideViewModel *)model willCenterOnCurrentLocation:(CLLocationCoordinate2D)coord;
 
 @end
 
