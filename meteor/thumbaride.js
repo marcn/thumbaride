@@ -42,9 +42,9 @@ if (Meteor.isServer) {
 			}
 
 			return {"method": "mobileLogin", "data": {"userId": user_id}};
-		}
+		},
 		
-		"listDrivers " : function (args) {
+		"listDrivers" : function (args) {
 		
 			var lat = args[0];
 			var long = args[1];
