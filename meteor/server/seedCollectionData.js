@@ -76,6 +76,17 @@ loadTestData = function () {
 			type: "passenger"
 		});
 
+		Pandas.insert({
+			name: "Marc Novakowski",
+			fb_id: "500013856",
+			from_location: [-119.4501005, 49.8081247],
+			to_location: [-122.266034, 37.810322],
+			status: PASSENGER_STATE.NEEDRIDE.name,
+			passengers: [],
+			driver: null,
+			type: "passenger"
+		});
+
 	}
 
 };
