@@ -23,11 +23,13 @@ function getInfoWindow(document){
 function getIcon(status){
 	var icon = "/img/"
 	if (status == "needride"){
-		icon = icon + "icon-thumb-noride.png"
+		icon = icon + "icon-thumb-noride-32.png"
 	}else if (status == "foundride"){
-		icon = icon + "icon-thumb-ride.png"
-	}else if ((status == "seekingriders") ||  (status == "foundriders")){
-		icon = icon + "icon-car-small.png"
+		icon = icon + "icon-thumb-ride-32.png"
+	}else if (status == "seekingriders"){
+		icon = icon + "icon-car-32.png"
+	}else if (status == "foundriders"){
+		icon = icon + "icon-car-full-32.png"
 	} 
 
 	return icon;
