@@ -1,4 +1,7 @@
 var infowindow;
+var line;
+
+
 
 function getInfoWindow(document){
 	var infoWindow = '<div id="content">' +
@@ -32,7 +35,8 @@ function getIcon(status){
 
 function addMarkers(document, map){
 
-
+	//map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(
+  	//document.getElementById('legend'));
 
 	var from = new google.maps.Marker({
 					animation: google.maps.Animation.DROP,
@@ -54,8 +58,35 @@ function addMarkers(document, map){
 				});
 
 	
+	var mouseOver = function (e) {
 
-	
+		if (line) {
+	        line.setMap(null);
+	    }
+
+		line = new google.maps.Polyline({
+		    path: [
+		        from.getPosition(), 
+		        to.getPosition()
+		    ],
+		    strokeColor: "#FF0000",
+		    strokeOpacity: 1.0,
+		    strokeWeight: 10,
+		    map: map.instance
+		});
+	}
+
+	var mouseOut = function (e) {
+		if (line) {
+	        line.setMap(null);
+	    }
+	}
+
+	from.addListener('mouseover', mouseOver);
+	to.addListener('mouseover', mouseOver);
+	from.addListener('mouseout', mouseOut);
+	to.addListener('mouseout', mouseOut);
+
 	from.addListener('click', function (e) {
 
 		if (infowindow) {
@@ -94,7 +125,7 @@ function addMarkers(document, map){
 Template.map.onCreated(function () {
 	GoogleMaps.ready('map', function (map) {
 		var markers = {};
-		Drivers.find().observe({
+		Pandas.find().observe({
 			added: function (document) {
 				markers[document._id] = addMarkers(document, map);;
 			},
