@@ -66,10 +66,10 @@ if (Meteor.isServer) {
 			var driverFBId = args[0];
 			var passengerFBId = args[1];
 			
-			Pandas.update(driverFBId, {$push: {passengers: passengerFBId}})
+			Pandas.update({fb_id: driverFBId}, {$push: {passengers: passengerFBId}})
 			
-			Pandas.update(passengerFBId, {$set: {status: "foundride"}})
-			Pandas.update(passengerFBId, {$set: {driver: driverFBId}})			
+			Pandas.update({fb_id: passengerFBId}, {$set: {status: "foundride"}})
+			Pandas.update({fb_id: passengerFBId}, {$set: {driver: driverFBId}})			
 		}		
 		
 		
