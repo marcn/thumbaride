@@ -1,5 +1,5 @@
 
-
+ 
 if (Meteor.isClient) {
 
 	Meteor.startup(function () {
@@ -42,9 +42,9 @@ if (Meteor.isServer) {
 			}
 
 			return {"method": "mobileLogin", "data": {"userId": user_id}};
-		}
+		},
 		
-		"listDrivers " : function (args) {
+		"listDrivers" : function (args) {
 		
 			var lat = args[0];
 			var long = args[1];
@@ -59,8 +59,23 @@ if (Meteor.isServer) {
 			var long = args[1];
 			
 			return Pandas.find({type : "passenger"}, {sort: {createdAt: -1}});
-		}
+		},
+
+		"pickupThumbs" : function (args) {
 		
+			var driverFBId = args[0];
+			var passengerFBId = args[1];
+			
+			Pandas.update({fb_id: driverFBId}, {$push: {passengers: passengerFBId}})
+			
+			Pandas.update({fb_id: passengerFBId}, {$set: {status: "foundride"}})
+			Pandas.update({fb_id: passengerFBId}, {$set: {driver: driverFBId}})			
+			
+		},
+		"foundriders" : function (args) {
+			var driverFBId = args[0];
+			Pandas.update({fb_id : driverFBId}, {$set: {status: "foundriders"}});
+		}						
 	});
 
 }

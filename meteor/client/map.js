@@ -23,11 +23,13 @@ function getInfoWindow(document){
 function getIcon(status){
 	var icon = "/img/"
 	if (status == "needride"){
-		icon = icon + "icon-thumb-noride.png"
+		icon = icon + "icon-thumb-noride-32.png"
 	}else if (status == "foundride"){
-		icon = icon + "icon-thumb-ride.png"
-	}else if ((status == "seekingriders") ||  (status == "foundriders")){
-		icon = icon + "icon-car-small.png"
+		icon = icon + "icon-thumb-ride-32.png"
+	}else if (status == "seekingriders"){
+		icon = icon + "icon-car-32.png"
+	}else if (status == "foundriders"){
+		icon = icon + "icon-car-full-32.png"
 	} 
 
 	return icon;
@@ -120,36 +122,36 @@ function addMarkers(document, map){
 	return [from, to];
 }
 
+var markers = {};
+function addPanda(document, map){
+	markers[document._id] = addMarkers(document, map);
+}
+function removePanda(oldDocument){
 
+	if (markers[oldDocument._id]){
+		markers[oldDocument._id][0].setMap(null);	
+		markers[oldDocument._id][1].setMap(null);	
+		google.maps.event.clearInstanceListeners(markers[oldDocument._id][0]);
+		google.maps.event.clearInstanceListeners(markers[oldDocument._id][1]);
+		delete markers[oldDocument._id];
+
+	}
+
+}
 
 Template.map.onCreated(function () {
 	GoogleMaps.ready('map', function (map) {
-		var markers = {};
+
 		Pandas.find().observe({
 			added: function (document) {
-				markers[document._id] = addMarkers(document, map);;
+				addPanda(document, map)
 			},
 			changed: function (newDocument, oldDocument) {
-				markers[newDocument._id].setPosition({lat: parseFloat(newDocument.lat), lng: parseFloat(newDocument.long)});
+				removePanda(oldDocument);
+				addPanda(newDocument, map);
 			},
 			removed: function (oldDocument) {
-				markers[oldDocument._id].setMap(null);
-				google.maps.event.clearInstanceListeners(markers[oldDocument._id]);
-				delete markers[oldDocument._id];
-			}
-		});
-
-		Passengers.find().observe({
-			added: function (document) {
-				markers[document._id] = addMarkers(document, map, "driver");;
-			},
-			changed: function (newDocument, oldDocument) {
-				markers[newDocument._id].setPosition({lat: newDocument.lat, lng: newDocument.lng});
-			},
-			removed: function (oldDocument) {
-				markers[oldDocument._id].setMap(null);
-				google.maps.event.clearInstanceListeners(markers[oldDocument._id]);
-				delete markers[oldDocument._id];
+				removePanda(oldDocument);
 			}
 		});
 	});
