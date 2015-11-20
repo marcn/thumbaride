@@ -43,7 +43,7 @@
 }
 
 - (void)cancel {
-    [self.navigationController dismissViewControllerAnimated:YES completion:^{
+    [self dismissViewControllerAnimated:YES completion:^{
         if ([self.delegate respondsToSelector:@selector(detailsViewControllerDidCancel:)]) {
             [self.delegate detailsViewControllerDidCancel:self];
         }
@@ -51,9 +51,9 @@
 }
 
 - (IBAction)pickUp:(id)sender {
-    [self.navigationController dismissViewControllerAnimated:YES completion:^{
-        if ([self.delegate respondsToSelector:@selector(detailsViewControllerDidCancel:)]) {
-            [self.delegate detailsViewControllerDidCancel:self];
+    [self dismissViewControllerAnimated:YES completion:^{
+        if ([self.delegate respondsToSelector:@selector(detailsViewControllerDidPickUp:)]) {
+            [self.delegate detailsViewControllerDidPickUp:self];
         }
     }];
 }
