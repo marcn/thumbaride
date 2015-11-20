@@ -43,6 +43,24 @@ if (Meteor.isServer) {
 
 			return {"method": "mobileLogin", "data": {"userId": user_id}};
 		}
+		
+		"listDrivers " : function (args) {
+		
+			var lat = args[0];
+			var long = args[1];
+			
+			return Pandas.find({type : "driver"}, {sort: {createdAt: -1}});
+
+		},
+		
+		"listThumbs" : function (args) {
+		
+			var lat = args[0];
+			var long = args[1];
+			
+			return Pandas.find({type : "passenger"}, {sort: {createdAt: -1}});
+		}
+		
 	});
 
 }
