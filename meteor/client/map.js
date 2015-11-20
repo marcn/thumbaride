@@ -159,7 +159,7 @@ Template.map.onCreated(function () {
 
 		Tracker.autorun(function() {
 			var currentUserInfo = Session.get("currentUserInfo");
-			if (currentUserInfo) {
+			if (currentUserInfo && currentUserInfo.from_location) {
 				removePanda(currentUserInfo, map);
 				addPanda(currentUserInfo, map);
 			}
