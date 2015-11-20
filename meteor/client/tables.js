@@ -9,6 +9,7 @@ function addDistanceTransform(item) {
 		var distanceMeters = google.maps.geometry.spherical.computeDistanceBetween(a, b);
 		var distanceMiles = distanceMeters * 0.000621371;
 		item['distance'] = Math.round(distanceMiles * 10) / 10;	// show accuracy to 0.1 mile
+		item['distance'] = item['distance']+'mi';
 	} else {
 		item['distance'] = "-";
 	}
