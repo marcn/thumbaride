@@ -10,6 +10,11 @@
 		1ED81DEA5834CD3E67105F80 /* Pods_ThumbARide.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65D5A6D4070BBD948663D9E5 /* Pods_ThumbARide.framework */; };
 		38187A271BFD562C009089C4 /* DetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38187A251BFD562C009089C4 /* DetailsViewController.m */; };
 		38187A281BFD562C009089C4 /* DetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38187A261BFD562C009089C4 /* DetailsViewController.xib */; };
+		386D912B1BFE9D4300A287FA /* DriverAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 386D912A1BFE9D4300A287FA /* DriverAnnotationView.m */; };
+		386D912E1BFE9D4D00A287FA /* RiderAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 386D912D1BFE9D4D00A287FA /* RiderAnnotationView.m */; };
+		386D91311BFE9D6100A287FA /* PickupAnnoationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 386D91301BFE9D6100A287FA /* PickupAnnoationView.m */; };
+		386D91341BFE9D7500A287FA /* DestinationAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 386D91331BFE9D7500A287FA /* DestinationAnnotationView.m */; };
+		386D91361BFEAE6B00A287FA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 386D91351BFEAE6B00A287FA /* Assets.xcassets */; };
 		8E3F94F21BFD4EA00019036D /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E3F94F11BFD4EA00019036D /* LoginViewController.m */; };
 		8E3F94F51BFD4EC00019036D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E3F94F41BFD4EC00019036D /* AppDelegate.m */; };
 		8E3F94F81BFD4EDC0019036D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E3F94F71BFD4EDC0019036D /* main.m */; };
@@ -17,7 +22,6 @@
 		8E3F94FE1BFD59280019036D /* RideViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E3F94FD1BFD59280019036D /* RideViewModel.m */; };
 		8E766DFC1BFE8E2500FF6AE4 /* MKMapView+ZoomLevel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E766DFB1BFE8E2500FF6AE4 /* MKMapView+ZoomLevel.m */; };
 		BE3F153C1BFD220B0072E5F2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE3F153A1BFD220B0072E5F2 /* Main.storyboard */; };
-		BE3F153E1BFD220B0072E5F2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BE3F153D1BFD220B0072E5F2 /* Assets.xcassets */; };
 		BE3F15411BFD220B0072E5F2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE3F153F1BFD220B0072E5F2 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
@@ -26,6 +30,15 @@
 		38187A241BFD562C009089C4 /* DetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailsViewController.h; sourceTree = "<group>"; };
 		38187A251BFD562C009089C4 /* DetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailsViewController.m; sourceTree = "<group>"; };
 		38187A261BFD562C009089C4 /* DetailsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailsViewController.xib; sourceTree = "<group>"; };
+		386D91291BFE9D4300A287FA /* DriverAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DriverAnnotationView.h; sourceTree = "<group>"; };
+		386D912A1BFE9D4300A287FA /* DriverAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DriverAnnotationView.m; sourceTree = "<group>"; };
+		386D912C1BFE9D4D00A287FA /* RiderAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RiderAnnotationView.h; sourceTree = "<group>"; };
+		386D912D1BFE9D4D00A287FA /* RiderAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RiderAnnotationView.m; sourceTree = "<group>"; };
+		386D912F1BFE9D6100A287FA /* PickupAnnoationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickupAnnoationView.h; sourceTree = "<group>"; };
+		386D91301BFE9D6100A287FA /* PickupAnnoationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PickupAnnoationView.m; sourceTree = "<group>"; };
+		386D91321BFE9D7500A287FA /* DestinationAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DestinationAnnotationView.h; sourceTree = "<group>"; };
+		386D91331BFE9D7500A287FA /* DestinationAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DestinationAnnotationView.m; sourceTree = "<group>"; };
+		386D91351BFEAE6B00A287FA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		65D5A6D4070BBD948663D9E5 /* Pods_ThumbARide.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ThumbARide.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E3F94F01BFD4EA00019036D /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		8E3F94F11BFD4EA00019036D /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
@@ -41,7 +54,6 @@
 		BB00D24114A99503DB0A2908 /* Pods-ThumbARide.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ThumbARide.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ThumbARide/Pods-ThumbARide.debug.xcconfig"; sourceTree = "<group>"; };
 		BE3F15331BFD220B0072E5F2 /* ThumbARide.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ThumbARide.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE3F153B1BFD220B0072E5F2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		BE3F153D1BFD220B0072E5F2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BE3F15401BFD220B0072E5F2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BE3F15421BFD220B0072E5F2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BE3F15541BFD4AA20072E5F2 /* ThumbARide-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ThumbARide-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -59,6 +71,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		386D91281BFE9C4500A287FA /* AnnotationViews */ = {
+			isa = PBXGroup;
+			children = (
+				386D912F1BFE9D6100A287FA /* PickupAnnoationView.h */,
+				386D91301BFE9D6100A287FA /* PickupAnnoationView.m */,
+				386D91321BFE9D7500A287FA /* DestinationAnnotationView.h */,
+				386D91331BFE9D7500A287FA /* DestinationAnnotationView.m */,
+				386D912C1BFE9D4D00A287FA /* RiderAnnotationView.h */,
+				386D912D1BFE9D4D00A287FA /* RiderAnnotationView.m */,
+				386D91291BFE9D4300A287FA /* DriverAnnotationView.h */,
+				386D912A1BFE9D4300A287FA /* DriverAnnotationView.m */,
+			);
+			name = AnnotationViews;
+			sourceTree = "<group>";
+		};
 		60BF24A69FC2D29263EB3037 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -97,10 +124,11 @@
 		BE3F15351BFD220B0072E5F2 /* ThumbARide */ = {
 			isa = PBXGroup;
 			children = (
+				386D91281BFE9C4500A287FA /* AnnotationViews */,
 				8E766DF91BFE8DFF00FF6AE4 /* Util */,
 				BE3F153A1BFD220B0072E5F2 /* Main.storyboard */,
-				BE3F153D1BFD220B0072E5F2 /* Assets.xcassets */,
 				BE3F153F1BFD220B0072E5F2 /* LaunchScreen.storyboard */,
+				386D91351BFEAE6B00A287FA /* Assets.xcassets */,
 				BE3F15421BFD220B0072E5F2 /* Info.plist */,
 				BE3F15541BFD4AA20072E5F2 /* ThumbARide-Bridging-Header.h */,
 				8E3F94F01BFD4EA00019036D /* LoginViewController.h */,
@@ -190,8 +218,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				BE3F15411BFD220B0072E5F2 /* LaunchScreen.storyboard in Resources */,
-				BE3F153E1BFD220B0072E5F2 /* Assets.xcassets in Resources */,
 				BE3F153C1BFD220B0072E5F2 /* Main.storyboard in Resources */,
+				386D91361BFEAE6B00A287FA /* Assets.xcassets in Resources */,
 				38187A281BFD562C009089C4 /* DetailsViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -252,9 +280,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				8E766DFC1BFE8E2500FF6AE4 /* MKMapView+ZoomLevel.m in Sources */,
+				386D91341BFE9D7500A287FA /* DestinationAnnotationView.m in Sources */,
 				8E3F94F51BFD4EC00019036D /* AppDelegate.m in Sources */,
 				38187A271BFD562C009089C4 /* DetailsViewController.m in Sources */,
+				386D912B1BFE9D4300A287FA /* DriverAnnotationView.m in Sources */,
 				8E3F94F81BFD4EDC0019036D /* main.m in Sources */,
+				386D912E1BFE9D4D00A287FA /* RiderAnnotationView.m in Sources */,
+				386D91311BFE9D6100A287FA /* PickupAnnoationView.m in Sources */,
 				8E3F94FE1BFD59280019036D /* RideViewModel.m in Sources */,
 				8E3F94F21BFD4EA00019036D /* LoginViewController.m in Sources */,
 				8E3F94FB1BFD51E90019036D /* RideViewController.m in Sources */,

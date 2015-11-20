@@ -11,8 +11,9 @@
 #import "RideViewController.h"
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
+#import "DetailsViewController.h"
 
-#define FORCE_SHOW_MAP 0
+#define FORCE_SHOW_MAP 1
 
 @implementation AppDelegate
 
@@ -31,6 +32,9 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
         self.window.rootViewController = [LoginViewController new];
     }
 #endif
+    
+/*    UINavigationController *controller = [[UINavigationController alloc] initWithRootViewController:[[DetailsViewController alloc] init]];
+    self.window.rootViewController = controller;*/
     
     [self.window makeKeyAndVisible];
 

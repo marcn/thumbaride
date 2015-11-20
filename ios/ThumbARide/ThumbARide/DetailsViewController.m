@@ -7,6 +7,7 @@
 //
 
 #import "DetailsViewController.h"
+#import <CoreLocation/CoreLocation.h>
 
 @interface DetailsViewController ()
 
@@ -36,6 +37,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"Jane Doe";
+//    MKPointAnnotation *annotation = self.mapView.annotations.firstObject;
+//    CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(<#CLLocationDegrees latitude#>, <#CLLocationDegrees longitude#>)
+//    [annotation setCoordinate:coord];
+//    [self.mapView setCenterCoordinate:coord zoomLevel:15 animated:YES];
     self.navigationController.navigationBar.translucent = NO;
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
                                                                                            target:self

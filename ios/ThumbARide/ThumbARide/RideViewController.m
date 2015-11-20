@@ -14,6 +14,10 @@
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 #import "MKMapView+ZoomLevel.h"
+#import "DestinationAnnotationView.h"
+#import "PickupAnnoationView.h"
+#import "RiderAnnotationView.h"
+#import "DriverAnnotationView.h"
 
 //static NSString * const kGoogleMapsAPIKey = @"AIzaSyBGiI5rT3mXPgdgYy29IEfAg01lPx089NI";
 
@@ -48,9 +52,6 @@
     self.mapView.showsPointsOfInterest = YES;
     self.mapView.showsCompass = NO;
     self.mapView.showsUserLocation = YES;
-    MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
-    annotation.title = @"Me";
-    [self.mapView addAnnotation:annotation];
     self.mapView.delegate = self;
     
     self.pickup = [UITextField new];
@@ -194,15 +195,14 @@
     // Dispose of any resources that can be recreated.
 }
 
-//- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
-//    
-//    MKPinAnnotationView *v = [MKPinAnnotationView alloc];
-//    v.draggable = YES;
-//    v.canShowCallout = YES;
-//    v.animatesDrop = YES;
-//
-//    return v;
-//}
+- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
+    static NSString *pickupIdentifier = @"Pickup";
+    PickupAnnoationView *view = (PickupAnnoationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:pickupIdentifier];
+    if (!view) {
+        view = [[PickupAnnoationView alloc] initWithAnnotation:annotation reuseIdentifier:pickupIdentifier];
+    }
+    return view;
+}
 
 - (void)mapView:(MKMapView *)mapView
  annotationView:(MKAnnotationView *)view
