@@ -11,7 +11,7 @@
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 #import "RideViewController.h"
 
-#define FORCE_LOGIN 1
+#define FORCE_LOGIN 0
 
 @interface LoginViewController () <FBSDKLoginButtonDelegate>
 
@@ -20,6 +20,8 @@
 @implementation LoginViewController
 
 - (void)loadMapView {
+    
+    [[self.view viewWithTag:1010] setAlpha:0];
     [self presentViewController:[RideViewController new] animated:YES completion:nil];
 }
 
@@ -37,7 +39,7 @@
     
     FBSDKLoginButton *loginButton = [[FBSDKLoginButton alloc] init];
     loginButton.delegate = self;
-    
+    loginButton.tag = 1010;
 #if FORCE_LOGIN
     
     UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"splash-6"]];
