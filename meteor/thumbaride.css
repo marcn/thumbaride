@@ -10,3 +10,20 @@
     background: white;
     padding: 10px;
   }
+
+
+.userTable {
+    position: fixed;
+    border: 1px solid lightskyblue;
+    top: 150px;
+    left: 20px;
+    width: 300px;
+    padding: 20px;
+    background-color: rgba(255,255,255,0.8);
+}
+
+
+.logo {
+    width: 200px;
+    margin-left: 40px;
+}
