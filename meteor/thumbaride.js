@@ -11,6 +11,10 @@ if (Meteor.isClient) {
 
 if (Meteor.isServer) {
 
+	Meteor.publish("pandas", function() {
+		return Pandas.find();
+	});
+
 	// Define externally-visible methods here
 	Meteor.methods({
 		"mobileLogin": function (args) {
